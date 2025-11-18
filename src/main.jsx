@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App.jsx";
 import ReactDOM from "react-dom/client";
-import Dashboard from './../node_modules/react-router/dist/development/index.d';
-
+import Dashboard from "./components/dashboard.jsx"
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
