@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App.jsx";
 import ReactDOM from "react-dom/client";
-import Dashboard from "./components/dashboard.jsx"
+import Dashboard from "./pages/dashboardLayout.jsx";
 import BankAccount from "./pages/CompteBancaires.jsx"
 import DepositMoney from "./pages/DepositMoney.jsx";
 
