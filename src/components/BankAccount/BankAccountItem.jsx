@@ -24,7 +24,7 @@ export default function BankAccountItem({ account, index }) {
         </div>
 
         <div className="flex flex-row items-center gap-5">
-          <p className="text-sm py-2 px-5 rounded-xl border" style={{backgroundColor: "var(--color-bg-green)", borderColor: "var(--color-border-green)", color: "var(--color-text-green)"}}>+{account.solde}</p>
+          <p className="text-sm py-2 px-5 rounded-xl border" style={{backgroundColor: "var(--color-bg-green)", borderColor: "var(--color-border-green)", color: "var(--color-text-green)"}}>+{account.solde}€</p>
           
           <button onClick={() => setIsOpen(true)} className="flex items-center justify-center p-2 rounded-full cursor-pointer">
             <EllipsisVertical />
@@ -34,12 +34,18 @@ export default function BankAccountItem({ account, index }) {
                 <div className="absolute top-0 -right-85 bg-white border rounded-lg shadow-lg z-10">
                   <ul className="flex flex-col p-4 relative">
                     <button className="flex justify-end absolute right-4 top-2 cursor-pointer text-red-500" onClick={() => setIsOpen(false)}>X</button>
-                    <li className="p-2 cursor-pointer" onClick={() => setIsOpen(false)}>Voir les transactions</li>
-                    <li className="p-2 cursor-pointer" onClick={() => setIsOpen(false)}>Faire une Transaction</li>
+                    <li style={{color: "var(--color-gray)"}} className="p-2 cursor-pointer" onClick={() => setIsOpen(false)}>Voir les transactions</li>
+                    <li style={{color: "var(--color-gray)"}} className="p-2 cursor-pointer" onClick={() => setIsOpen(false)}>Faire une Transaction</li>
                     <li 
+                    
                     className="p-2 cursor-pointer border-t-1 rounded-lg" 
                     style={{color: "var(--text-color)", backgroundColor: "var(--color-bg-red-bytton)", borderColor: "var(--color-border-red-button)"}} 
-                    onClick={() => closeBankAccount(account.id)}>Cloturer le compte</li>
+                    onClick={() => {
+                        if (window.confirm("Es-tu sûr de vouloir clôturer ce compte ?")) {
+                          closeBankAccount(account.id);
+                          window.location.reload();
+                        }
+                    }}>Cloturer le compte</li>
                   </ul>
                 </div>
               </div>

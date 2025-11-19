@@ -30,9 +30,9 @@ function bankAccount() {
         <div className='flex flex-col items-center justify-center w-full h-full rounded-xl p-3 overflow-scroll' style={{backgroundColor: "var(--bacground-card)"}}>
             
             <div className='flex flex-col w-full p-6 '>
-              <AddAccountButton 
-                count={accounts.length} 
-                refresh={() => setAccounts([...accounts])} 
+              <AddAccountButton  
+                accounts={accounts}
+                
               />
             </div>
 

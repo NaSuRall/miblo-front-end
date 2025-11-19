@@ -2,9 +2,10 @@ import React from 'react'
 import { addBankAccount } from "../../services/api/bankAccountService";
 import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
-function AddAccountButton({count}) {
-
-    const disabled = count >= 5;
+function AddAccountButton({accounts}) {
+  
+    const activeCount = accounts.filter(a => !a.is_closed).length;
+    const disabled = activeCount >= 5;
 
 
   return (
@@ -21,9 +22,10 @@ function AddAccountButton({count}) {
             alert("Vous avez atteint le maximum de comptes bancaires.");
             return;
           }
-            alert("Création d'un nouveau compte bancaire !");
+            window.confirm("Es-tu sûr de vouloir créer un nouveau compte ?");
             const data = await addBankAccount(1);   // remplacez 1 par l'ID utilisateur connecter
             console.log("Creation du compte banquaire", data);
+            window.location.reload();
           } catch (e) {
             console.error("Erreur :", e);
           }
