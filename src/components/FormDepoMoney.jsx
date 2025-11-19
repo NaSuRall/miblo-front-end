@@ -3,7 +3,6 @@ import '../index.css'
 import {ArrowBigDownDash} from "lucide-react"
 import {getBankAccounts} from "../services/api/bankAccountService.js";
 import {depositMoneyService} from "../services/api/depositMoneyService.js";
-import {data} from "react-router-dom";
 
 function FormDepoMoney() {
     const [bankAccounts, setBankAccounts] = useState([]);
@@ -96,7 +95,7 @@ function FormDepoMoney() {
                 <ArrowBigDownDash size={50}/>
 
                 {errorMsg && (
-                    <p className="text-red-600 text-3xl">
+                    <p className="text-red-600 text-sm absolute z-10 bg-white p-3">
                         {errorMsg}
                     </p>
                 )}
