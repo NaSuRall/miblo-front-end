@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 :root {
-    --background-color: #F8FBF1;
+    --background-color: #ffffff;
     --text-color: #ffffff;
     --bacground-card: #C49FFF;
     --background-button: #7B9DD2;
     --background-button-hover: #646cff;
+    --color-gray:#848485;
+    --color-text-green: #22b95e;
+    --color-bg-green: #68f8a274;
+    --color-border-green: #19cb60;
   
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
