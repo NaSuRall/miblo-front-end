@@ -12,8 +12,10 @@ function bankAccount() {
             <h2 className='' style={{color: "var(--text-color)"}}>Navbar</h2>
         </div>
 
-        <div className='flex flex-col w-full h-full rounded-xl p-3' style={{backgroundColor: "var(--bacground-card)"}}>
+        <div className='flex flex-col items-center justify-center w-full h-full rounded-xl p-3 overflow-scroll' style={{backgroundColor: "var(--bacground-card)"}}>
             <BankAccountList />
+
+
         </div>
     </main>
   )
