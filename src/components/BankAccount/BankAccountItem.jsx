@@ -20,8 +20,8 @@ export default function BankAccountItem({ account, index }) {
             <EllipsisVertical />
           </button>
             {isOpen ? (
-              <div className="relative self-start">
-                <div className="absolute top-0 -right-60 bg-white border rounded-lg shadow-lg z-10">
+              <div className="fixed flex justify-end">
+                <div className="absolute top-0 -right-85 bg-white border rounded-lg shadow-lg z-10">
                   <ul className="flex flex-col p-4 relative">
                     <button className="flex justify-end absolute right-4 text-red-500" onClick={() => setIsOpen(false)}>X</button>
                     <li className="p-2 cursor-pointer" onClick={() => setIsOpen(false)}>Voir les détails</li>
