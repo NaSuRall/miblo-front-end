@@ -58,7 +58,7 @@ export default function Connexion() {
                     </div>
 
                     <div className="flex flex-col">
-                        <label className="mb-1 font-semibold text-xl">Mot de passe</label>
+                        <label className="mb-1 font-semibold text-xl">Mot de Passe</label>
                         <div className="flex items-center">
                             <input
                                 type={showPassword ? "text" : "password"}
@@ -90,10 +90,10 @@ export default function Connexion() {
                 </form>
 
                 <button
-                    onClick={() => navigate("/inscription")}
+                    onClick={() => navigate("/Inscription")}
                     className="w-full mt-4 py-2 rounded-lg bg-[#992BB5] font-semibold hover:opacity-90 transition"
                 >
-                    Créer un compte
+                    Vous n'avez pas de compte ? Créer un compte.
                 </button>
             </div>
         </div>
