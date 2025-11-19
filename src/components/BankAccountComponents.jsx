@@ -8,7 +8,7 @@ function BankAccountComponents()
   useEffect(() => {
     const loadBankAccount = async () => {
       try {
-        const res = await fetch("http://0.0.0.0:8000/bank/account/1");
+        const res = await fetch("http://127.0.0.1:8000/bank/account/1");
         const data = await res.json();
         setBankAccountData(data);
       } catch (e) {
