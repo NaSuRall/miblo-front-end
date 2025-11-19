@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import "../index.css";
 import { getBankAccounts } from "../services/api/bankAccountService.js";
 import {getAccountByRib, transactionService} from "../services/api/transactionService.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function TransactionMakeForm() {
     const [bankAccounts, setBankAccounts] = useState([]);
     const [errorMsg, setErrorMsg] = useState("");
-    const [rib, setRib] = useState(""); // <-- manquait !
+    const [rib, setRib] = useState("");
 
     const [formData, setFormData] = useState({
         id_compteA: 0,
@@ -33,7 +35,7 @@ function TransactionMakeForm() {
                     id_compteB: account.id,
                 }));
             } catch {
-                setErrorMsg("RIB invalide ou compte introuvable.");
+                toast.error("RIB invalide ou compte introuvable.");
                 setFormData((prev) => ({ ...prev, id_compteB: 0 }));
             }
         }
@@ -55,35 +57,36 @@ function TransactionMakeForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        toast.success("fonctionne ta mere")
         setErrorMsg("");
 
         const amountNumber = Number(formData.amout);
 
         if (formData.amout.trim() === "" || isNaN(amountNumber)) {
-            setErrorMsg("Veuillez entrer un montant valide.");
+            toast.error("Veuillez entrer un montant valide.")
             return;
         }
         if (amountNumber <= 0) {
-            setErrorMsg("Le montant doit être supérieur à 0.");
+            toast.error("Le montant doit être supérieur à 0.");
             return;
         }
 
         if (!formData.id_compteA) {
-            setErrorMsg("Veuillez selectionner un compte source.");
+            toast.error("Veuillez selectionner un compte source.");
             return;
         }
 
         if (!formData.id_compteB) {
-            setErrorMsg("RIB invalide.");
+            toast.error("RIB invalide.");
             return;
         }
 
         try {
             const data = await transactionService(formData);
             console.log("Réponse API :", data);
-            setErrorMsg(data.message);
+            toast.success(data.message);
         } catch (error) {
-            setErrorMsg(error.message);
+            toast.error(error.message);
         }
     };
 
@@ -107,6 +110,7 @@ function TransactionMakeForm() {
 
             <div className="flex flex-col items-center justify-center gap-10 m-3 text-6xl">
                 <input
+                    className="outline-none text-center"
                     type="text"
                     placeholder="RIB du compte destinataire"
                     value={rib}
@@ -132,6 +136,15 @@ function TransactionMakeForm() {
 
                 <button className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl" type="submit">Effectuer</button>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                pauseOnHover
+                draggable
+            />
         </form>
     );
 }
