@@ -15,6 +15,7 @@ export async function addBankAccount(user_id) {
       body: JSON.stringify({ user_id }),
     });
     if (!res.ok) throw new Error("Erreur API");
+    toast.success(res.message)
     return await res.json();
   
 } 

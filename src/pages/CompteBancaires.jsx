@@ -4,6 +4,8 @@ import BankAccountList from '../components/BankAccount/BankAccountListe'
 import AddAccountButton from '../components/BankAccount/AddAccountButton'
 import { getBankAccounts } from "../services/api/bankAccountService";
 import  getIdFromToken  from '../services/getIdFromToken';
+import { ToastContainer } from 'react-toastify';
+
 
 function bankAccount() {
 
@@ -17,6 +19,7 @@ function bankAccount() {
         try {
           const data = await getBankAccounts(userId); 
           setAccounts(data);
+          
           console.log("Données des comptes bancaires :", data);
         } catch (e) {
           console.error("Erreur :", e);
@@ -31,6 +34,7 @@ function bankAccount() {
               <AddAccountButton accounts={accounts} />
             </div>
             <BankAccountList accounts={accounts} />
+
         </div>
   )
 }

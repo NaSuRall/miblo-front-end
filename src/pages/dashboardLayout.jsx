@@ -3,6 +3,8 @@ import '../index.css';
 import React from 'react';
 import { Outlet, NavLink } from "react-router-dom";
 import { Home, CreditCard, BarChart2, Settings } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function DashboardLayout() {
   const navItems = [
@@ -13,11 +15,18 @@ export default function DashboardLayout() {
     { name: "Mon Profil", path: "/me", icon: Settings },
   ];
 
+    const handleLogout = () => {
+    localStorage.removeItem("token"); // supprime le JWT
+    navigate("/login"); // redirige vers la page de connexion
+  };
+
   return (
     <div className="flex h-screen p-3 gap-5" style={{backgroundColor: "var(--background-color)"}}>
       <aside className="w-64 text-gray-200 flex rounded-xl flex-col p-6 gap-6 shadow-xl" style={{backgroundColor: "var(--background-card-navbar)"}}>
         <div className="text-2xl font-bold tracking-wide text-center mb-4 " style={{color: "var(--text-color)"}}>
           MIBLO
+
+         <button onClick={handleLogout}>Se déconnecter</button>;
         </div>
         <nav className="flex flex-col gap-4 text-sm font-medium">
           {navItems.map((item, index) => {
@@ -37,6 +46,8 @@ export default function DashboardLayout() {
               </NavLink>
             );
           })}
+
+
         </nav>
       </aside>
 
