@@ -35,7 +35,7 @@ export default function Connexion() {
 
             localStorage.setItem("token", token);
             console.log(token);
-            navigate("/dashboard");
+            navigate("/");
         } catch (err) {
             if (err.response && err.response.status === 401) {
                 setError("Identifiants incorrects");

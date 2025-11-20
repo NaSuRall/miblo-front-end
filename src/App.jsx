@@ -1,24 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Connexion from "./Connexion";
-import Inscription from "./Inscription.jsx";
-import Dashboard from "./Dashboard";
+import Connexion from "./pages/Connexion.jsx";
+import Inscription from "./pages/Inscription.jsx";
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
     return (
-        <Routes>
-            <Route path="/login" element={<Connexion />} />
-            <Route path="/register" element={<Inscription onSwitchToLogin={() => window.location.href='/login'} />} />
-
-            <Route
-                path="/dashboard"
-                element={
-                    <ProtectedRoute>
-                        <Dashboard />
-                    </ProtectedRoute>
-                }
-            />
-        </Routes>
+    <div></div>
     );
 }
 
