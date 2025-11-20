@@ -22,3 +22,9 @@ export async function getAccountByRib(rib) {
     if (!res.ok) throw new Error("Erreur API");
     return await res.json();
 }
+
+export async function getTransactionList(accountId, userId) {
+    const response = await fetch(`http://localhost:8000/transactions/${accountId}/${userId}`);
+    const text = await response.text();
+    return JSON.parse(text);
+}

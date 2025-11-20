@@ -5,7 +5,7 @@ import {getAccountByRib, transactionService} from "../services/api/transactionSe
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function TransactionMakeForm() {
+function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     const [bankAccounts, setBankAccounts] = useState([]);
     const [errorMsg, setErrorMsg] = useState("");
     const [rib, setRib] = useState("");
@@ -26,8 +26,9 @@ function TransactionMakeForm() {
 
     useEffect(() => {
         async function fetchAccountB() {
+            console.log("caca", rib)
             if (rib.trim() === "") return;
-
+                console.log(rib);
             try {
                 const account = await getAccountByRib(rib);
                 setFormData((prev) => ({
@@ -52,6 +53,7 @@ function TransactionMakeForm() {
     };
 
     const handleRibChange = (e) => {
+        console.log(e);
         setRib(e.target.value);
     };
 
@@ -97,9 +99,18 @@ function TransactionMakeForm() {
                     id="accountChoice"
                     name="compteId"
                     value={formData.compteId}
-                    onChange={(e) =>
-                        setFormData({ ...formData, id_compteA: Number(e.target.value) })
-                    }
+                    onChange={(e) => {
+                        const id = Number(e.target.value);
+                        setFormData({
+                            ...formData,
+                            id_compteA: id
+                        });
+                        onAccountChange(id);
+                        const selectedAccount = bankAccounts.find(acc => acc.id === id);
+                        if (selectedAccount) {
+                            origineAccountRib(selectedAccount.rib);
+                        }
+                    }}
             >
                 {bankAccounts.map((account, index)  => (
                     <option key={account.id} value={account.id}>
