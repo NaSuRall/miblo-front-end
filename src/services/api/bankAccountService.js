@@ -10,6 +10,7 @@ export async function addBankAccount(user_id) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        
       },
       body: JSON.stringify({ user_id }),
     });
