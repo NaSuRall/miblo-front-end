@@ -3,6 +3,8 @@ import '../index.css'
 import {ArrowBigDownDash} from "lucide-react"
 import {getBankAccounts} from "../services/api/bankAccountService.js";
 import {depositMoneyService} from "../services/api/depositMoneyService.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function FormDepoMoney() {
     const [bankAccounts, setBankAccounts] = useState([]);
@@ -36,33 +38,35 @@ function FormDepoMoney() {
         const amountNumber = Number(formData.amout);
 
         if (formData.amout.trim() === "" || isNaN(amountNumber)) {
-            setErrorMsg("Veuillez entrer un nombre valide.");
+            toast.error("Veuillez entrer un nombre valide.");
             return;
         }
 
         if (amountNumber <= 0) {
-            setErrorMsg("Le montant doit être supérieur à 0.");
+            toast.error("Le montant doit être supérieur à 0.");
             return;
         }
 
         if (!formData.compteId) {
-            setErrorMsg("Veuillez sélectionner un compte.");
+            toast.error("Veuillez sélectionner un compte.");
             return;
         }
         try {
             const data = await depositMoneyService(formData);
+            toast.success("Votre dépot a bien été pris en compte")
+            toast.success(data.message)
             console.log("Réponse API :", data);
 
         } catch (error) {
             console.error("Erreur :", error);
-            setErrorMsg(error.message);
+            toast.error(error.message);
         }
     };
 
 
     return (
         <form className="h-10/12 w-10/12 flex flex-col items-center justify-center rounded-xl gap-10" style={{backgroundColor: "var(--background-color)"}} onSubmit={handleSubmit} >
-            <h1 className="text-6xl">Dépo</h1>
+            <h1 className="text-6xl">Dépot</h1>
             <select className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl"
                 id="accountChoice"
                 name="compteId"
@@ -102,6 +106,16 @@ function FormDepoMoney() {
 
             <button className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl" type="submit">Déposer</button>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                pauseOnHover
+                draggable
+            />
         </form>
     );
 }

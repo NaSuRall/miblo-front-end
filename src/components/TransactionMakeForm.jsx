@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     const [bankAccounts, setBankAccounts] = useState([]);
     const [rib, setRib] = useState("");
-    const [accountNumber, setAccountNumber] = useState("");
 
     const [formData, setFormData] = useState({
         id_compteA: 0,
