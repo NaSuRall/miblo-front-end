@@ -97,7 +97,7 @@ export default function Connexion() {
                 </form>
 
                 <button
-                    onClick={() => navigate("/Inscription")}
+                    onClick={() => navigate("/register")}
                     className="w-full mt-4 py-2 rounded-lg bg-[#992BB5] font-semibold hover:opacity-90 transition"
                 >
                     Vous n'avez pas de compte ? Créer un compte.

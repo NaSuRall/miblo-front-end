@@ -1,6 +1,9 @@
 import { useState } from "react";
+import {redirect, useNavigate} from "react-router-dom";
 
-export default function RegisterForm({ onSwitchToLogin }) {
+export default function RegisterForm() {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -41,10 +44,10 @@ export default function RegisterForm({ onSwitchToLogin }) {
                 setError(data.detail || "Erreur lors de l'inscription");
             } else {
                 alert("Compte créé avec succès !");
-                onSwitchToLogin(); // redirige vers login
+               navigate("/login");
             }
-        } catch (err) {
-            setError("Impossible de contacter le serveur");
+        } catch (error) {
+            setError("Impossible de contacter le serveur", error);
         } finally {
             setLoading(false);
         }
@@ -140,7 +143,7 @@ export default function RegisterForm({ onSwitchToLogin }) {
 
                 <button
                     type="button"
-                    onClick={onSwitchToLogin}
+                    onClick={() => navigate("/login")}
                     className="w-full mt-4 py-2 rounded-lg bg-[#992BB5] font-semibold hover:opacity-90 transition"
                 >
                     Vous avez déjà un compte ? Connectez-vous.
