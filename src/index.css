@@ -3,26 +3,18 @@
 
 
 :root {
-    --background-color: #F8FBF1;
+    --background-color: #ffffff;
     --text-color: #ffffff;
-    --bacground-card: #992BB5;
+    --bacground-card: #C49FFF;
     --background-button: #7B9DD2;
     --background-button-hover: #646cff;
-  
+    --color-gray:#848485;
+    --color-text-green: #22b95e;
+    --color-bg-green: #68f8a274;
+    --color-border-green: #19cb60;
+
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #F8FBF1;
-  
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
 
