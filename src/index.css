@@ -17,10 +17,10 @@
      --color-bg-button-green-hover: #22b95e;
 
 
-     --color-bg-red-bytton: #ff6868a1;
-     --color-bg-red-bytton-hover: #ff4c4c;
+     --color-bg-red-button: #ff6868a1;
+     --color-bg-red-button-hover: #ff4c4c;
      --color-border-red-button: #ff3b3b;
-
+    --color-text-red-button: #ff0000;
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
