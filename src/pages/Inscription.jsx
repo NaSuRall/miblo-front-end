@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {redirect, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export default function RegisterForm() {
     const navigate = useNavigate();
@@ -44,7 +44,7 @@ export default function RegisterForm() {
                 setError(data.detail || "Erreur lors de l'inscription");
             } else {
                 alert("Compte créé avec succès !");
-               navigate("/login");
+               navigate("/");
             }
         } catch (error) {
             setError("Impossible de contacter le serveur", error);
@@ -58,7 +58,7 @@ export default function RegisterForm() {
             <div className="w-full max-w-md bg-[#7B9DD2] p-8 rounded-xl shadow-xl text-white">
                 <h2 className="text-2xl font-bold text-center mb-6">Inscription</h2>
 
-                {error && <p className="text-red-300 mb-4 text-center">{error}</p>}
+                {error && <p className="text-red-600 mb-4 text-center">{error}</p>}
 
                 <form onSubmit={handleSubmit} className="space-y-4">
 
