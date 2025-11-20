@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import "../index.css";
 import { getBankAccounts } from "../services/api/bankAccountService.js";
-import { getAccountByRib, transactionService } from "../services/api/transactionService.js";
+import {getAccountByRib, transactionService } from "../services/api/transactionService.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function TransactionMakeForm() {
+function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     const [bankAccounts, setBankAccounts] = useState([]);
-    const [errorMsg, setErrorMsg] = useState("");
     const [rib, setRib] = useState("");
 
     const [formData, setFormData] = useState({
@@ -25,9 +24,25 @@ function TransactionMakeForm() {
     }, []);
 
     useEffect(() => {
-        async function fetchAccountB() {
-            if (rib.trim() === "") return;
+        if (bankAccounts.length > 0 && !formData.id_compteA) {
+            const firstId = bankAccounts[0].id;
 
+            setFormData(prev => ({
+                ...prev,
+                id_compteA: firstId
+            }));
+
+            onAccountChange(firstId);
+            origineAccountRib(bankAccounts[0].rib);
+        }
+    }, [bankAccounts]);
+
+
+    useEffect(() => {
+        async function fetchAccountB() {
+            console.log("caca", rib)
+            if (rib.trim() === "") return;
+                console.log(rib);
             try {
                 const account = await getAccountByRib(rib);
                 setFormData((prev) => ({
@@ -35,7 +50,6 @@ function TransactionMakeForm() {
                     id_compteB: account.id,
                 }));
             } catch {
-                toast.error("RIB invalide ou compte introuvable.");
                 setFormData((prev) => ({ ...prev, id_compteB: 0 }));
             }
         }
@@ -52,13 +66,12 @@ function TransactionMakeForm() {
     };
 
     const handleRibChange = (e) => {
+        console.log(e);
         setRib(e.target.value);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        toast.success("fonctionne ta mere")
-        setErrorMsg("");
 
         const amountNumber = Number(formData.amout);
 
@@ -91,19 +104,28 @@ function TransactionMakeForm() {
     };
 
     return (
-        <form className="h-10/12 w-10/12 flex flex-col items-center justify-center rounded-xl gap-10" style={{ backgroundColor: "var(--background-color)" }} onSubmit={handleSubmit} >
+        <form className="h-10/12 w-10/12 flex flex-col items-center justify-center rounded-xl gap-10" style={{backgroundColor: "var(--background-color)"} } onSubmit={handleSubmit} >
             <h1 className="text-6xl">Transaction</h1>
             <select className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl"
-                id="accountChoice"
-                name="compteId"
-                value={formData.compteId}
-                onChange={(e) =>
-                    setFormData({ ...formData, id_compteA: Number(e.target.value) })
-                }
+                    id="accountChoice"
+                    name="compteId"
+                    value={formData.id_compteA}
+                    onChange={(e) => {
+                        const id = Number(e.target.value);
+                        setFormData({
+                            ...formData,
+                            id_compteA: id
+                        });
+                        onAccountChange(id);
+                        const selectedAccount = bankAccounts.find(acc => acc.id === id);
+                        if (selectedAccount) {
+                            origineAccountRib(selectedAccount.rib);
+                        }
+                    }}
             >
-                {bankAccounts.map((account, index) => (
+                {bankAccounts.map((account, index)  => (
                     <option key={account.id} value={account.id}>
-                        Compte n°{index + 1}
+                        Compte n°{index+1}
                     </option>
                 ))}
             </select>
@@ -127,12 +149,6 @@ function TransactionMakeForm() {
                         name="amout"
                     />
                 </div>
-
-                {errorMsg && (
-                    <p className="text-red-600 text-sm absolute z-10 bg-white p-3">
-                        {errorMsg}
-                    </p>
-                )}
 
                 <button className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl" type="submit">Effectuer</button>
             </div>
