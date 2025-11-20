@@ -6,15 +6,25 @@
     --background-color: #ffffff;
     --text-color: #ffffff;
     --bacground-card: #C49FFF;
+    --background-card-navbar: #936fcd;
     --background-button: #7B9DD2;
     --background-button-hover: #646cff;
     --color-gray:#848485;
     --color-text-green: #22b95e;
     --color-bg-green: #68f8a274;
     --color-border-green: #19cb60;
+    --color-bg-button-green: #68f8a2a7;
+     --color-bg-button-green-hover: #22b95e;
+
+
+     --color-bg-red-bytton: #ff6868a1;
+     --color-bg-red-bytton-hover: #ff4c4c;
+     --color-border-red-button: #ff3b3b;
 
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
 }
+
+
 

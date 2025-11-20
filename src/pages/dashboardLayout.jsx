@@ -1,32 +1,49 @@
-import DashboardComponent from '../components/DashboardComponent';
+
 import '../index.css';
 import React from 'react';
+import { Outlet, NavLink } from "react-router-dom";
+import { Home, CreditCard, BarChart2, Settings } from "lucide-react";
 
-const DashboardLayout = () => {
+export default function DashboardLayout() {
+  const navItems = [
+    { name: "Accueil", path: "/", icon: Home },
+    { name: "Comptes", path: "/bank/account", icon: CreditCard },
+    { name: "Transactions", path: "/bank/transactions", icon: BarChart2 },
+    { name: "Dépôts", path: "/depositmoney", icon: CreditCard },
+    { name: "Mon Profil", path: "/me", icon: Settings },
+  ];
+
   return (
-    // 1. Conteneur Parent (div dashboard) - w-full
-    <div className="flex h-screen w-full bg-gray-500 rounded-xl shadow-lg gap-7 p-4">
-      
-      {/* 2. Barre de Navigation (div Navbar) - w-[15%] */}
-      <div className="w-[15%] p-4 mr-10  bg-white/65 rounded-lg shadow-md shrink-0">
-        <h2 className="text-3xl font-bold text-black/65 mb-4 text-center">Miblo</h2>
-        <nav className="flex flex-col space-y-4">
-          <a href="#" className="text-lg text-black/65 hover:text-black font-bold ">Accueil</a>
-          <a href="#" className="text-lg text-black/65 hover:text-black font-bold">Mon compte</a>
-          <a href="#" className="text-lg text-black/65 hover:text-black font-bold">Mes bénéficiaires</a>
-          <a href="#" className="text-lg text-black/65 hover:text-black font-bold">Mes transactions</a>
-          <a href="#" className="text-lg text-black/65 hover:text-black font-bold">Virementx</a>
-          <a href="#" className="text-lg text-black/65 hover:text-black font-bold">Paramètres</a>
-          <a href="#" className="text-lg text-black/65 hover:text-black font-bold">Déconnexion</a>
+    <div className="flex h-screen p-3 gap-5" style={{backgroundColor: "var(--background-color)"}}>
+      <aside className="w-64 text-gray-200 flex rounded-xl flex-col p-6 gap-6 shadow-xl" style={{backgroundColor: "var(--background-card-navbar)"}}>
+        <div className="text-2xl font-bold tracking-wide text-center mb-4 " style={{color: "var(--text-color)"}}>
+          MIBLO
+        </div>
+        <nav className="flex flex-col gap-4 text-sm font-medium">
+          {navItems.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <NavLink
+                to={item.path}
+                key={index}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-3 py-2 rounded-xl transition ${
+                    isActive ? "bg-purple-400/50 text-white" : "hover:bg-purple-400/30 text-gray-300"
+                  }`
+                }
+              >
+                <Icon size={20} />
+                {item.name}
+              </NavLink>
+            );
+          })}
         </nav>
-      </div>
+      </aside>
 
-      
-      <div className="flex flex-col w-full h-full bg-white/65 p-4 mr-4 rounded-md shadow-md">
-        <DashboardComponent />
-      </div>
+      <main className="flex-1 overflow-auto">
+        {/* Outlet affichera le composant correspondant à la route dans main.jsx*/}
+        <Outlet />
+      </main>
     </div>
   );
-};
-
-export default DashboardLayout;
+}
