@@ -1,9 +1,13 @@
-export default function RecipientItem({recipient}){
+export default function RecipientItem({ recipient }) {
+    const formattedDate = recipient.date
+        ? new Date(recipient.date).toLocaleDateString("fr-FR")
+        : "Date inconnue";
+
     return (
-        <div>
-            <p>Nom du bénéficiaire : {recipients.name}</p>
-            <p>RIB du bénéficiaire : {recipients.rib}</p>
-            <p>Date d'ajout : {recipients.date}</p>
+        <div className="border p-3 rounded-lg">
+            <p><b>Nom du bénéficiaire :</b> {recipient.name}</p>
+            <p><b>RIB du bénéficiaire :</b> {recipient.rib}</p>
+            <p><b>Date d'ajout :</b> {formattedDate}</p>
         </div>
-    )
+    );
 }
