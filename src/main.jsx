@@ -8,6 +8,8 @@ import DashboardLayout from "./pages/dashboardLayout.jsx";
 import Transaction from "./pages/Transaction.jsx";
 import Connexion from "./pages/Connexion.jsx";
 import Inscription from "./pages/Inscription.jsx";
+import RecipientList from "./components/RecipientList.jsx";
+import Recipient from "./pages/Recipient.jsx";
 
 export default function PrivateRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -25,6 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/bank/account" element={<BankAccount />} />
           <Route path="/depositmoney" element={<DepositMoney />} />
           <Route path="/bank/transaction" element={<Transaction />} />
+          <Route path="/recipients" element={<Recipient />} />
         </Route>
           <Route path="/login" element={<Connexion/>}/>
           <Route path="/register" element={<Inscription/>}/>
