@@ -5,7 +5,7 @@ import {getAccountByRib, transactionService } from "../../services/api/transacti
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import getIdFromToken from "../../services/getIdFromToken.js";
-import {MoveRight} from "lucide-react";
+import {MoveRight, Send} from "lucide-react";
 
 function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     const [bankAccounts, setBankAccounts] = useState([]);
@@ -110,7 +110,8 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     };
 
     return (
-        <form className=" w-full flex flex-col justify-center items-center gap-5 h-full"  onSubmit={handleSubmit} >
+        <form className=" w-full flex flex-col gap-5 h-full"  onSubmit={handleSubmit} >
+            <h2 className="flex flex-row justify-start items-center text-black">Crée une transaction</h2>
             <div className="flex flex-row justify-around gap-5">
                 <div className="flex flex-row items-center justify-center">
                     <select className="px-4 py-2 rounded-lg text-xl"
@@ -145,7 +146,7 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
                 </div>
                 <div className="flex flex-row items-center  gap-10 m-3 text-xl">
                     <input
-                        className="outline-none text-center"
+                        className="outline-none text-center border-b-1 "
                         type="text"
                         placeholder="RIB du compte destinataire"
                         value={rib}
@@ -167,7 +168,7 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
                     <div className="flex items-center justify-center">
                         <MoveRight />
                     </div>
-                    <button className="p-2 rounded-lg text-xl " style={{backgroundColor: "var(--background-color)"}} type="submit">Effectuer</button>
+                    <button className="flex flex-row gap-2 p-2 items-center rounded-lg text-xl " style={{backgroundColor: "var(--background-color)"}} type="submit">Effectuer <Send size={20} /></button>
                 </div>
             </div>
 

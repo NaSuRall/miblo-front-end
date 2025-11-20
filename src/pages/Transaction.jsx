@@ -13,7 +13,7 @@ function Transaction() {
             <div className='flex flex-col w-full rounded-xl p-3 ' style={{backgroundColor: "var(--bacground-card)"}}>
                 <TransactionMakeForm onAccountChange={setSelectedAccountId} origineAccountRib={setOrigineAccountRib} />
             </div>
-            <div className='flex flex-col items-center justify-center w-full h-full rounded-xl p-3 ' style={{backgroundColor: "var(--bacground-card)"}}>
+            <div className='flex flex-col items-center justify-center w-full h-full overflow-scroll rounded-xl p-3 ' style={{backgroundColor: "var(--bacground-card)"}}>
                 <TransactionHistory  />
             </div> 
         </main>
