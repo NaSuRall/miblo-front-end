@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 export default function RegisterForm() {
     const navigate = useNavigate();
 
+    // Contenir les données nécessaire
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -11,8 +12,10 @@ export default function RegisterForm() {
         confirmPassword: ""
     });
 
+    // Afficher ou masquer password
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    // Message d'erreur
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -28,6 +31,7 @@ export default function RegisterForm() {
         setLoading(true);
 
         try {
+            // Envoi des données au backend
             const res = await fetch("http://127.0.0.1:8000/register", {
                 method: "POST",
                 headers: {
@@ -38,14 +42,18 @@ export default function RegisterForm() {
                 ),
             });
 
+            // On récupère la réponse du serveur
             const data = await res.json();
 
+            // Si la réponse n'est pas bonne on à une erreur, et inversement si la réponse est bonne et redirection
             if (!res.ok) {
                 setError(data.detail || "Erreur lors de l'inscription");
             } else {
                 alert("Compte créé avec succès !");
                navigate("/");
             }
+
+            // Si le serveur ne répond pas on a une eurreur
         } catch (error) {
             setError("Impossible de contacter le serveur", error);
         } finally {
@@ -58,6 +66,7 @@ export default function RegisterForm() {
             <div className="w-full max-w-md bg-[#7B9DD2] p-8 rounded-xl shadow-xl text-white">
                 <h2 className="text-2xl font-bold text-center mb-6">Inscription</h2>
 
+                {/* Message d'erreur*/}
                 {error && <p className="text-red-600 mb-4 text-center">{error}</p>}
 
                 <form onSubmit={handleSubmit} className="space-y-4">

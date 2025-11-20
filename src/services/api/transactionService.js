@@ -24,7 +24,7 @@ export async function getAccountByRib(rib) {
 }
 
 export async function getTransactionList(accountId, userId) {
-    const response = await fetch(`http://localhost:8000/transactions/${accountId}/${userId}`);
+    const response = await fetch(`http://localhost:8000/Transactions/${accountId}/${userId}`);
     const text = await response.text();
     return JSON.parse(text);
 }
