@@ -10,37 +10,40 @@ export default function DashboardComponent() {
   const token = localStorage.getItem("token");
   const userId = getIdFromToken(token);
   const [accounts, setAccounts] = useState([]);
-  
-
-  useEffect(() => {
-    async function load() {
-      try {
-        const data = await getTransactionsAccount(userId, 1);
-        setTransactions(data);
-
-      } catch (e) {
-        console.error("Erreur :", e);
-        setError("Impossible de charger les transactions");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    load();
-  }, []);
-
+  const [compteId, setCompteId] = useState(null);
 
   useEffect(() => {
     async function load() {
       try {
         const data = await getBankAccounts(userId);
         setAccounts(data);
-        console.log("Données des comptes bancaires :", data);
+        setCompteId(data[0].id)
+
       } catch (e) {
         console.error("Erreur :", e);
       }
     }
+
     load();
-  }, []); 
+  }, [userId]);
+
+
+    useEffect(() => {
+      if (!compteId) return;
+
+      async function load() {
+        try {
+          const data = await getTransactionsAccount(compteId, userId);
+          setTransactions(data);
+        } catch (e) {
+          console.error("Erreur :", e);
+          setError("Impossible de charger les transactions.");
+        } finally {
+          setIsLoading(false);
+        }
+      }
+      load();
+    }, [compteId, userId]);
 
   if (isLoading) return <p>Chargement...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
