@@ -3,17 +3,23 @@ import '../index.css'
 import BankAccountList from '../components/BankAccount/BankAccountListe'
 import AddAccountButton from '../components/BankAccount/AddAccountButton'
 import { getBankAccounts } from "../services/api/bankAccountService";
+import  getIdFromToken  from '../services/getIdFromToken';
+import { ToastContainer } from 'react-toastify';
 
 
 function bankAccount() {
 
     const [accounts, setAccounts] = useState([]);
+    const token = localStorage.getItem("token");
+    const userId = getIdFromToken(token);
+    console.log("User ID extrait du token :", userId);
   
     useEffect(() => {
       async function load() {
         try {
-          const data = await getBankAccounts(1); // j'ai mis 1 pour l'id mais remplace pas l'auth id 
+          const data = await getBankAccounts(userId); 
           setAccounts(data);
+          
           console.log("Données des comptes bancaires :", data);
         } catch (e) {
           console.error("Erreur :", e);
@@ -28,6 +34,7 @@ function bankAccount() {
               <AddAccountButton accounts={accounts} />
             </div>
             <BankAccountList accounts={accounts} />
+
         </div>
   )
 }

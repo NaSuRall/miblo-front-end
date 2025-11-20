@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import App from "./App.jsx";
 import ReactDOM from "react-dom/client";
 import Dashboard from "./components/DashboardComponent.jsx";
@@ -9,10 +9,18 @@ import Transaction from "./pages/Transaction.jsx";
 import Connexion from "./pages/Connexion.jsx";
 import Inscription from "./pages/Inscription.jsx";
 
+export default function PrivateRoute({ children }) {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+}
+
 ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<DashboardLayout />}>
+      <Routes >
+        <Route path="/" element={<PrivateRoute><DashboardLayout /></PrivateRoute>}>
           <Route index element={<Dashboard />} />
           <Route path="/bank/account" element={<BankAccount />} />
           <Route path="/depositmoney" element={<DepositMoney />} />

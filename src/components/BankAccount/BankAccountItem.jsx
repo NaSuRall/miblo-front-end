@@ -1,19 +1,27 @@
 import { EllipsisVertical } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Users, Landmark, Eye, EyeOff, CircleSmall } from "lucide-react";
 import Button from "../Form/Button";
-import { closeBankAccount } from "../../services/api/bankAccountService";
+import {closeBankAccount} from "../../services/api/bankAccountService";
+import { toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 
 export default function BankAccountItem({ account, index }) {
-
+  console.log("Account in BankAccountItem:", account);
   const [isOpen, setIsOpen] = useState(false);
   const [blind, setBlind] = useState(true);
+
+
+  const token = localStorage.getItem("token");
+  const decodedToken = jwtDecode(token);
+  console.log("Decoded Token:", decodedToken);
+
   return (
     <div className="flex flex-row  w-full justify-between p-2  rounded-lg">
       <div className="flex flex-row  w-full p-5 rounded-xl gap-2 justify-between" style={{ backgroundColor: "var(--background-color)" }}>
         <div className="flex flex-col">
-          <h3 className="text-sm flex flex-row items-center gap-2" style={{ color: "var(--color-gray)" }} ><Landmark size={15} />Compte n° {account.is_primary ? "1" : index + 2}</h3>
-          <p className="text-sm flex flex-row items-center gap-2" style={{ color: "var(--color-gray)" }}><Users size={15} />Romain Poulain</p>
+          <h3 className="text-sm flex flex-row items-center gap-2"style={{color: "var(--color-gray)"}} ><Landmark size={15}/>Compte n° {account.is_primary ? "1" : index + 2}</h3>
+          <p className="text-sm flex flex-row items-center gap-2" style={{color: "var(--color-gray)"}}><Users size={15}/>{decodedToken.name}</p>
         </div>
         <div className="flex flex-row items-center justify-center">
           <Button
