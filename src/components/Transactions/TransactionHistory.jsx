@@ -52,10 +52,10 @@ export default function TransactionHistory() {
 
   return (
     <div className="flex flex-col items-center w-full h-full p-6">
-      <h1 className="text-xl font-bold mb-6 text-gray-700">Historique des Transactions</h1>
+      <h1 className="text-lg font-bold mb-6 text-gray-700">Historique des Transactions</h1>
 
       {transactions.length === 0 ? (
-        <p>Aucune transaction trouvée.</p>
+        <p className="flex flex-row items-center justify-center text-red-500">Aucune transaction trouvée.</p>
       ) : (
         <div className="w-[70%] flex h-full flex-col gap-4">
           {transactions.map((t) => {
@@ -69,10 +69,10 @@ export default function TransactionHistory() {
 
                 <div className="text-sm flex flex-row gap-4 text-gray-700">
                   <div>
-                    <strong>De :</strong> {accountMap[t.id_compteA] || "—"}
+                    <strong className="text-sm">De :</strong> {accountMap[t.id_compteA] || "—"}
                   </div>
                   <div>
-                    <strong>Vers :</strong> {accountMap[t.id_compteB] || "—"}
+                    <strong className="text-sm">Vers :</strong> {accountMap[t.id_compteB] || "—"}
                   </div>
                 </div>
                 

@@ -61,7 +61,6 @@ export default function DashboardComponent() {
                 <div className="flex flex-row ">
                   <div className="flex flex-col w-full h-full">
                     <h2 className="text-sm font-bold text-gray-700 mb-4">Compte {account.is_primary ? "principale" : "Secondaire"}</h2>
-                    <p>{account.id}</p>
                     <p className="text-sm flex flex-row items-center gap-2 text-gray-500"><Landmark size={15} />RIB: {account.rib}</p>
                     <p className="text-sm flex flex-row items-center gap-2" style={{ color: "var(--color-gray)" }}><Users size={15} />Romain Poulain</p>
                   </div>
@@ -79,7 +78,7 @@ export default function DashboardComponent() {
                   .slice(0, 1)
                   .map((t) => (
                     <div key={t.id} className="flex flex-row border-2 border-gray-200 p-2 rounded-lg justify-between items-center mt-2">
-                      <p className="text-sm ">"Destinataire"</p>
+                      <p className="text-sm ">Destinataire(id): {t.id_compteB}</p>
                       <p className="text-sm py-1 px-5 rounded-xl border" style={{ backgroundColor: "var(--color-bg-red-button)", borderColor: "var(--color-border-red-button)", color: "var(--color-text-red-button)" }}>- {t.amout}€</p>
                     </div>
                   )))
@@ -117,7 +116,7 @@ export default function DashboardComponent() {
 
       {/* Transactions récentes */}
       <div className="bg-gray-50 p-6 rounded-lg shadow w-full h-full overflow-scroll">
-        <h3 className="text-xl font-bold text-gray-700 mb-4">Transactions </h3>
+        <h3 className="text-sm font-bold text-gray-700 mb-4">Transactions </h3>
         <div className="space-y-3">
           {transactions.length === 0 ? (
             <p className="text-gray-500">Aucune transaction trouvée.</p>
@@ -127,7 +126,7 @@ export default function DashboardComponent() {
               return (
                 <div
                   key={i}
-                  className={`p-4 bg-white shadow rounded flex flex-col md:flex-row md:justify-between md:items-center `}
+                  className={`p-4 bg-white text-sm shadow rounded flex flex-col md:flex-row md:justify-between md:items-center `}
                 >
                   <p><strong>Date :</strong> {new Date(t.created_at).toLocaleString()}</p>
                   <p><strong>Montant :</strong> {t.amout} €</p>
