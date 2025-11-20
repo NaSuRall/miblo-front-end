@@ -7,8 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     const [bankAccounts, setBankAccounts] = useState([]);
-    const [errorMsg, setErrorMsg] = useState("");
     const [rib, setRib] = useState("");
+    const [accountNumber, setAccountNumber] = useState("");
 
     const [formData, setFormData] = useState({
         id_compteA: 0,
@@ -25,6 +25,21 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     }, []);
 
     useEffect(() => {
+        if (bankAccounts.length > 0 && !formData.id_compteA) {
+            const firstId = bankAccounts[0].id;
+
+            setFormData(prev => ({
+                ...prev,
+                id_compteA: firstId
+            }));
+
+            onAccountChange(firstId);
+            origineAccountRib(bankAccounts[0].rib);
+        }
+    }, [bankAccounts]);
+
+
+    useEffect(() => {
         async function fetchAccountB() {
             console.log("caca", rib)
             if (rib.trim() === "") return;
@@ -36,7 +51,6 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
                     id_compteB: account.id,
                 }));
             } catch {
-                toast.error("RIB invalide ou compte introuvable.");
                 setFormData((prev) => ({ ...prev, id_compteB: 0 }));
             }
         }
@@ -59,8 +73,6 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        toast.success("fonctionne ta mere")
-        setErrorMsg("");
 
         const amountNumber = Number(formData.amout);
 
@@ -98,7 +110,7 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
             <select className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl"
                     id="accountChoice"
                     name="compteId"
-                    value={formData.compteId}
+                    value={formData.id_compteA}
                     onChange={(e) => {
                         const id = Number(e.target.value);
                         setFormData({
@@ -138,12 +150,6 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
                            name="amout"
                     />
                 </div>
-
-                {errorMsg && (
-                    <p className="text-red-600 text-sm absolute z-10 bg-white p-3">
-                        {errorMsg}
-                    </p>
-                )}
 
                 <button className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl" type="submit">Effectuer</button>
             </div>
