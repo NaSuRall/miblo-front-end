@@ -76,7 +76,7 @@ export default function RecipientForm({ userId, onRecipientAdded }) {
                 />
             </div>
 
-            <button type="submit" className="bg-blue-600 text-white p-2 rounded-lg">Ajouter</button>
+            <button type="submit" className="p-2 rounded-lg" style={{backgroundColor: "var(--color-bg-button-green)", color: "var(--text-color)", borderColor: "var(--color-border-green)"}}>Ajouter</button>
 
             <ToastContainer
                 position="top-right"

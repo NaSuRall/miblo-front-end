@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../index.css";
 import showRecipients from "../services/api/RecipientService.js";
 import RecipientList from "../components/RecipientList.jsx";
+import getIdFromToken from "../services/getIdFromToken.js";
 
 export default function RecipientShow(){
     const[recipientList, setRecipientList] = useState([]);
@@ -9,7 +10,9 @@ export default function RecipientShow(){
     useEffect(() => {
         async function load(){
             try{
-                const recipients = await showRecipients(1);
+                const token = localStorage.getItem("token");
+                const userId = getIdFromToken(token);
+                const recipients = await showRecipients(userId);
                 setRecipientList(recipients);
             }
             catch(e){
