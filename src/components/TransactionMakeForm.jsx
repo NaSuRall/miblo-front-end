@@ -4,6 +4,7 @@ import { getBankAccounts } from "../services/api/bankAccountService.js";
 import {getAccountByRib, transactionService } from "../services/api/transactionService.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+//test
 
 function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     const [bankAccounts, setBankAccounts] = useState([]);
