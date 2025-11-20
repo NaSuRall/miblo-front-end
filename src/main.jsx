@@ -16,6 +16,7 @@ import ReactDOM from "react-dom/client";
 import Dashboard from "./pages/dashboardLayout.jsx";
 import BankAccount from "./pages/CompteBancaires.jsx"
 import DepositMoney from "./pages/DepositMoney.jsx";
+import Transaction from "./pages/Transaction.jsx"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route path="/dashboard" element={<Dashboard/>} />
       <Route path="/depositmoney" element={<DepositMoney/>} />
       <Route path="/my-bank-account" element={<BankAccount/>} />
+      <Route path="/transaction" element={<Transaction/>} />
     </Routes>
   </BrowserRouter>
 );*/
