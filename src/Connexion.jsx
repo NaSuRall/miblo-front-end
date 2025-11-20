@@ -1,26 +1,32 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Connexion() {
     const navigate = useNavigate();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    })
 
     const handleLogin = async (e) => {
         e.preventDefault();
         setError("");
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/login", {
-                email,
-                password,
+            const response = await fetch("http://127.0.0.1:8000/login", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+
             });
 
-            const token = response.data.token;
+            const data = await response.json();
+            const token = data.token;
 
             if (!token) {
                 setError("Erreur : aucun token reçu");
@@ -28,6 +34,7 @@ export default function Connexion() {
             }
 
             localStorage.setItem("token", token);
+            console.log(token);
             navigate("/dashboard");
         } catch (err) {
             if (err.response && err.response.status === 401) {
@@ -49,8 +56,8 @@ export default function Connexion() {
                         <input
                             type="email"
                             placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             required
                             autoComplete="email"
                             className="px-4 py-2 rounded-lg text-black focus:outline-none bg-white"
@@ -63,8 +70,8 @@ export default function Connexion() {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Mot de passe"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                value={formData.password}
+                                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                                 required
                                 autoComplete="current-password"
                                 className="flex-1 px-4 py-2 rounded-l-lg text-black focus:outline-none bg-white"

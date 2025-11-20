@@ -30,11 +30,9 @@ export default function RegisterForm({ onSwitchToLogin }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    password: formData.password
-                }),
+                body: JSON.stringify(
+                    formData
+                ),
             });
 
             const data = await res.json();
