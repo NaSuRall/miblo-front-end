@@ -1,5 +1,5 @@
-import TransactionMakeForm from "../components/TransactionMakeForm.jsx";
-import TransactionHistory from "../components/TransactionHistory.jsx";
+import TransactionMakeForm from "../components/Transactions/TransactionMakeForm.jsx";
+import TransactionHistory from "../components/Transactions/TransactionHistory.jsx";
 import React, { useState } from "react";
 import '../index.css'
 
@@ -9,13 +9,13 @@ function Transaction() {
 
 
     return (
-        <main className="flex flex-row w-full h-screen p-3 gap-5 " style={{backgroundColor: "var(--background-color)"}}>
-            <div className='flex flex-col items-center justify-center w-full h-full rounded-xl p-3 overflow-scroll' style={{backgroundColor: "var(--bacground-card)"}}>
+        <main className="flex flex-col w-full h-full  gap-5 " style={{backgroundColor: "var(--background-color)"}}>
+            <div className='flex flex-col w-full rounded-xl p-3 ' style={{backgroundColor: "var(--bacground-card)"}}>
                 <TransactionMakeForm onAccountChange={setSelectedAccountId} origineAccountRib={setOrigineAccountRib} />
             </div>
-            <div className='flex flex-col items-center justify-center w-full h-full rounded-xl p-3 overflow-scroll' style={{backgroundColor: "var(--bacground-card)"}}>
-                <TransactionHistory accountId={selectedAccountId} origineAccountRib={origineAccountRib} />
-            </div>
+            <div className='flex flex-col items-center justify-center w-full h-full rounded-xl p-3 ' style={{backgroundColor: "var(--bacground-card)"}}>
+                <TransactionHistory  />
+            </div> 
         </main>
     )
 }
