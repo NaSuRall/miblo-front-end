@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../index.css";
 import { getBankAccounts } from "../services/api/bankAccountService.js";
-import {getAccountByRib, transactionService} from "../services/api/transactionService.js";
+import { getAccountByRib, transactionService } from "../services/api/transactionService.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -91,19 +91,19 @@ function TransactionMakeForm() {
     };
 
     return (
-        <form className="h-10/12 w-10/12 flex flex-col items-center justify-center rounded-xl gap-10" style={{backgroundColor: "var(--background-color)"} } onSubmit={handleSubmit} >
+        <form className="h-10/12 w-10/12 flex flex-col items-center justify-center rounded-xl gap-10" style={{ backgroundColor: "var(--background-color)" }} onSubmit={handleSubmit} >
             <h1 className="text-6xl">Transaction</h1>
             <select className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl"
-                    id="accountChoice"
-                    name="compteId"
-                    value={formData.compteId}
-                    onChange={(e) =>
-                        setFormData({ ...formData, id_compteA: Number(e.target.value) })
-                    }
+                id="accountChoice"
+                name="compteId"
+                value={formData.compteId}
+                onChange={(e) =>
+                    setFormData({ ...formData, id_compteA: Number(e.target.value) })
+                }
             >
-                {bankAccounts.map((account, index)  => (
+                {bankAccounts.map((account, index) => (
                     <option key={account.id} value={account.id}>
-                        Compte n°{index+1}
+                        Compte n°{index + 1}
                     </option>
                 ))}
             </select>
@@ -119,12 +119,12 @@ function TransactionMakeForm() {
 
                 <div className="flex flex-row w-full items-center justify-center h-1/2">
                     <input className="relative w-1/2 border-b-1 text-center outline-none"
-                           id="depoMoney"
-                           placeholder="€"
-                           type="text"
-                           value={formData.amout}
-                           onChange={handleAmountChange}
-                           name="amout"
+                        id="depoMoney"
+                        placeholder="€"
+                        type="text"
+                        value={formData.amout}
+                        onChange={handleAmountChange}
+                        name="amout"
                     />
                 </div>
 

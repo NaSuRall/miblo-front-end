@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import '../index.css'
-import {ArrowBigDownDash} from "lucide-react"
-import {getBankAccounts} from "../services/api/bankAccountService.js";
-import {depositMoneyService} from "../services/api/depositMoneyService.js";
+import { ArrowBigDownDash } from "lucide-react"
+import { getBankAccounts } from "../services/api/bankAccountService.js";
+import { depositMoneyService } from "../services/api/depositMoneyService.js";
 
 function FormDepoMoney() {
     const [bankAccounts, setBankAccounts] = useState([]);
@@ -61,7 +61,7 @@ function FormDepoMoney() {
 
 
     return (
-        <form className="h-10/12 w-10/12 flex flex-col items-center justify-center rounded-xl gap-10" style={{backgroundColor: "var(--background-color)"}} onSubmit={handleSubmit} >
+        <form className="h-10/12 w-10/12 flex flex-col items-center justify-center rounded-xl gap-10" style={{ backgroundColor: "var(--background-color)" }} onSubmit={handleSubmit} >
             <h1 className="text-6xl">Dépo</h1>
             <select className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl"
                 id="accountChoice"
@@ -71,28 +71,28 @@ function FormDepoMoney() {
                     setFormData({ ...formData, compteId: Number(e.target.value) })
                 }
             >
-                {bankAccounts.map((account, index)  => (
+                {bankAccounts.map((account, index) => (
                     <option key={account.id} value={account.id}>
-                        Compte n°{index+1}
+                        Compte n°{index + 1}
                     </option>
                 ))}
             </select>
-                <ArrowBigDownDash size={50}/>
+            <ArrowBigDownDash size={50} />
 
 
 
             <div className="depoDiv flex flex-col items-center justify-center gap-10 m-3 text-6xl">
                 <div className="flex flex-row w-full items-center justify-center h-1/2">
                     <input className="relative w-1/2 border-b-1 text-center outline-none"
-                           id="depoMoney"
-                           placeholder="€"
-                           type="text"
-                           value={formData.amout}
-                           onChange={handleChange}
-                           name="amout"
+                        id="depoMoney"
+                        placeholder="€"
+                        type="text"
+                        value={formData.amout}
+                        onChange={handleChange}
+                        name="amout"
                     />
                 </div>
-                <ArrowBigDownDash size={50}/>
+                <ArrowBigDownDash size={50} />
 
                 {errorMsg && (
                     <p className="text-red-600 text-sm absolute z-10 bg-white p-3">
@@ -100,7 +100,7 @@ function FormDepoMoney() {
                     </p>
                 )}
 
-            <button className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl" type="submit">Déposer</button>
+                <button className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl" type="submit">Déposer</button>
             </div>
         </form>
     );
