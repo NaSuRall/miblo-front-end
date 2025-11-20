@@ -8,7 +8,7 @@ export default function DashboardLayout() {
   const navItems = [
     { name: "Accueil", path: "/", icon: Home },
     { name: "Comptes", path: "/bank/account", icon: CreditCard },
-    { name: "Transactions", path: "/bank/transactions", icon: BarChart2 },
+    { name: "Transactions", path: "/bank/transaction", icon: BarChart2 },
     { name: "Dépôts", path: "/depositmoney", icon: CreditCard },
     { name: "Mon Profil", path: "/me", icon: Settings },
   ];
