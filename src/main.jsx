@@ -8,6 +8,7 @@ import DashboardLayout from "./pages/dashboardLayout.jsx";
 import Transaction from "./pages/Transaction.jsx";
 import Connexion from "./pages/Connexion.jsx";
 import Inscription from "./pages/Inscription.jsx";
+import Profile from "./pages/Profil.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/bank/account" element={<BankAccount />} />
           <Route path="/depositmoney" element={<DepositMoney />} />
           <Route path="/bank/transaction" element={<Transaction />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
           <Route path="/login" element={<Connexion/>}/>
           <Route path="/register" element={<Inscription/>}/>
