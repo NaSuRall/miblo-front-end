@@ -12,7 +12,7 @@ export default function DashboardLayout() {
     { name: "Comptes", path: "/bank/account", icon: CreditCard },
     { name: "Transactions", path: "/bank/transaction", icon: BarChart2 },
     { name: "Dépôts", path: "/depositmoney", icon: CreditCard },
-    { name: "Mon Profil", path: "/me", icon: Settings },
+
   ];
 
     const handleLogout = () => {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function RegisterForm() {
     const navigate = useNavigate();
@@ -56,6 +57,9 @@ export default function RegisterForm() {
     return (
         <div className="h-screen flex items-center w-full justify-center bg-gradient-to-b from-[#DDECF9] to-[#F8FBF1] p-4">
             <div className="w-full max-w-md bg-[#7B9DD2] p-8 rounded-xl shadow-xl text-white">
+                <div className="flex flex-row w-full items-center justify-center">
+                    <img src="../src/assets/img/logo.png" className='flex w-[30%] h-full  ' />
+                </div>
                 <h2 className="text-2xl font-bold text-center mb-6">Inscription</h2>
 
                 {error && <p className="text-red-600 mb-4 text-center">{error}</p>}
@@ -105,7 +109,7 @@ export default function RegisterForm() {
                                 onClick={() => setShowPassword((v) => !v)}
                                 className="px-3 py-2 bg-[#992BB5] rounded-r-lg hover:opacity-90 transition font-semibold"
                             >
-                                {showPassword ? "🙈" : "👁️"}
+                                {showPassword ? <Eye /> : <EyeOff />}
                             </button>
                         </div>
                     </div>
@@ -127,7 +131,7 @@ export default function RegisterForm() {
                                 onClick={() => setShowConfirmPassword((v) => !v)}
                                 className="px-3 py-2 bg-[#992BB5] rounded-r-lg hover:opacity-90 transition font-semibold"
                             >
-                                {showConfirmPassword ? "🙈" : "👁️"}
+                                {showConfirmPassword ? <Eye /> : <EyeOff />}
                             </button>
                         </div>
                     </div>

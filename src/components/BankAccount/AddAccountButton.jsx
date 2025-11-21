@@ -29,7 +29,6 @@ function AddAccountButton({accounts}) {
           }
             window.confirm("Es-tu sûr de vouloir créer un nouveau compte ?");
             const data = await addBankAccount(userId);   // remplacez 1 par l'ID utilisateur connecter
-            console.log("Creation du compte banquaire", data);
             window.location.reload();
           } catch (e) {
             console.error("Erreur :", e);
