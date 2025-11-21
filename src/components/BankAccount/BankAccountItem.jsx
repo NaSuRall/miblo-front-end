@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Users, Landmark, Eye, EyeOff, CircleSmall } from "lucide-react";
 import Button from "../Form/Button";
 import {closeBankAccount} from "../../services/api/bankAccountService";
-import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 
 export default function BankAccountItem({ account, index }) {
