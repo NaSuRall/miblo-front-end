@@ -61,7 +61,7 @@ export default function RecipientForm({ userId, onRecipientAdded }) {
                     type="text"
                     value={rib}
                     onChange={(e) => setRib(e.target.value)}
-                    className="p-2 border rounded-lg"
+                    className="p-2 border rounded-lg outline-none focus:outline-none"
                 />
             </div>
 
@@ -72,11 +72,11 @@ export default function RecipientForm({ userId, onRecipientAdded }) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Nom du bénéficiaire"
-                    className="p-2 border rounded-lg"
+                    className="p-2 border rounded-lg outline-none focus:outline-none"
                 />
             </div>
 
-            <button type="submit" className="p-2 rounded-lg" style={{backgroundColor: "var(--color-bg-button-green)", color: "var(--text-color)", borderColor: "var(--color-border-green)"}}>Ajouter</button>
+            <button type="submit" className="p-2 rounded-lg" style={{backgroundColor: "var(--color-bg-button-green)", color: "var(--color-text-green)", borderColor: "var(--color-border-green)"}}>Ajouter</button>
 
             <ToastContainer
                 position="top-right"

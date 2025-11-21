@@ -5,14 +5,16 @@ import {getBankAccounts} from "../services/api/bankAccountService.js";
 import {depositMoneyService} from "../services/api/depositMoneyService.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import getIdFromToken from "../services/getIdFromToken.js";
 
 function FormDepoMoney() {
     const [bankAccounts, setBankAccounts] = useState([]);
-    const [errorMsg, setErrorMsg] = useState("");
 
     useEffect(() => {
         const loadBankAccounts = async () => {
-            const data = await getBankAccounts(1);
+            const token = localStorage.getItem("token");
+            const userId = getIdFromToken(token);
+            const data = await getBankAccounts(userId);
             setBankAccounts(data);
         };
         loadBankAccounts();
@@ -23,21 +25,18 @@ function FormDepoMoney() {
         amout: "",
 
     })
-
     const handleChange = (e) => {
         setFormData({
             ...formData,
             amout: e.target.value,
         })
     }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrorMsg("");
-
         const amountNumber = Number(formData.amout);
 
         if (formData.amout.trim() === "" || isNaN(amountNumber)) {
+            console.log("test amout", formData.amout);
             toast.error("Veuillez entrer un nombre valide.");
             return;
         }
@@ -55,10 +54,10 @@ function FormDepoMoney() {
             const data = await depositMoneyService(formData);
             toast.success("Votre dépot a bien été pris en compte")
             toast.success(data.message)
-            console.log("Réponse API :", data);
+            console.log("reponse API :", data);
 
         } catch (error) {
-            console.error("Erreur :", error);
+            console.error("erreur :", error);
             toast.error(error.message);
         }
     };
@@ -67,14 +66,13 @@ function FormDepoMoney() {
     return (
         <form className="h-10/12 w-10/12 flex flex-col items-center justify-center rounded-xl gap-10" style={{backgroundColor: "var(--background-color)"}} onSubmit={handleSubmit} >
             <h1 className="text-6xl">Dépot</h1>
-            <select className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl"
+            <select className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl" style={{backgroundColor: "var(--color-bg-button-green)", color: "var(--color-text-green)", borderColor: "var(--color-border-green)"}}
                 id="accountChoice"
                 name="compteId"
                 value={formData.compteId}
                 onChange={(e) =>
                     setFormData({ ...formData, compteId: Number(e.target.value) })
-                }
-            >
+                }>
                 {bankAccounts.map((account, index)  => (
                     <option key={account.id} value={account.id}>
                         Compte n°{index+1}
@@ -98,13 +96,7 @@ function FormDepoMoney() {
                 </div>
                 <ArrowBigDownDash size={50} />
 
-                {errorMsg && (
-                    <p className="text-red-600 text-sm absolute z-10 bg-white p-3">
-                        {errorMsg}
-                    </p>
-                )}
-
-                <button className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl" type="submit">Déposer</button>
+                <button className="border-3 border-gray-400/50 p-2 rounded-xl text-3xl" type="submit" style={{backgroundColor: "var(--color-bg-button-green)", color: "var(--color-text-green)", borderColor: "var(--color-border-green)"}}>Déposer</button>
             </div>
 
             <ToastContainer

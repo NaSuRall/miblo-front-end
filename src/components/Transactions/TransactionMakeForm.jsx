@@ -45,7 +45,6 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
 
     useEffect(() => {
         async function fetchAccountB() {
-            console.log("caca", rib)
             if (rib.trim() === "") return;
                 console.log(rib);
             try {
