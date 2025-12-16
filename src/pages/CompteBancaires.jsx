@@ -4,7 +4,6 @@ import BankAccountList from '../components/BankAccount/BankAccountListe'
 import AddAccountButton from '../components/BankAccount/AddAccountButton'
 import { getBankAccounts } from "../services/api/bankAccountService";
 import  getIdFromToken  from '../services/getIdFromToken';
-import { ToastContainer } from 'react-toastify';
 
 
 function bankAccount() {
