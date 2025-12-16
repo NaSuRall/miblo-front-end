@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import '../index.css'
 
 function Transaction() {
-    const [selectedAccountId, setSelectedAccountId] = useState(null);
-    const [origineAccountRib, setOrigineAccountRib] = useState(null);
+    const [setSelectedAccountId] = useState(null);
+    const [setOrigineAccountRib] = useState(null);
 
 
     return (
