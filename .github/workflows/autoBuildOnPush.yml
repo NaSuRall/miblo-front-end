@@ -1,13 +1,32 @@
 name: auto-build-on-push
 run-name: ${{ github.actor }} push a commit
 on: [push]
+
 jobs:
-  check-bats-version:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with:
-          node-version: '24.11.1'
-      - run : npm install
-      - run: npm run build
+          node-version: '20'
+      - run: npm install
+      - name: Build project
+        run: npm run build
+
+      - name: Send email when fail
+        #send email when the build fail
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: erreur sur le repo ${{ github.repository }}
+          body: |
+            auteur du push : ${{ github.actor }}
+            sur la branche : ${{ github.ref }}
+            erreur sur le commit : ${{ github.sha }}
+          to: ${{ secrets.MAIL_TO }}
+          from: GitHub Actions <${{ secrets.SMTP_USERNAME }}>
