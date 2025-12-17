@@ -22,9 +22,11 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## initialier le projet sur votre docker : 
 
-docker build -t miblo-front-end .
+docker-compose up --build
 
 ## Lancer le Container 
 
-docker run -p 5173:5173 miblo-front-end
+docker-compose up
+
+
 
