@@ -15,12 +15,9 @@ jobs:
         run: npm run build
 
       - name: Send email when fail
-        #send email when the build fail 3
+        #send email when the build fail 4
+
         if: success()
-              - name: Debug SMTP (safe)
-              run: |
-                echo "SMTP_SERVER is set"
-                echo "SMTP_PORT=${{ secrets.SMTP_PORT }}"
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: ${{ secrets.SMTP_SERVER }}
