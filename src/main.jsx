@@ -19,7 +19,7 @@ export default function PrivateRoute({ children }) {
   return children;
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+RectDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
       <Routes >
         <Route path="/" element={<PrivateRoute><DashboardLayout /></PrivateRoute>}>

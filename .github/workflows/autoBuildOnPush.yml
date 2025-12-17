@@ -16,7 +16,7 @@ jobs:
 
       - name: Send email when fail
         #send email when the build fail
-        if: failure()
+        if: success()
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: ${{ secrets.SMTP_SERVER }}
