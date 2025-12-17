@@ -15,7 +15,7 @@ jobs:
         run: npm run build
 
       - name: Send email when fail
-        #send email when the build fail
+        #send email when the build fail 1
         if: success()
         uses: dawidd6/action-send-mail@v3
         with:
