@@ -6,7 +6,7 @@ import { getBankAccounts } from "../services/api/bankAccountService";
 import  getIdFromToken  from '../services/getIdFromToken';
 
 
-function bankAccount() {
+function BankAccount() {
 
     const [accounts, setAccounts] = useState([]);
     const token = localStorage.getItem("token");
@@ -38,4 +38,4 @@ function bankAccount() {
   )
 }
 
-export default bankAccount
+export default BankAccount
