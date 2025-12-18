@@ -1,3 +1,4 @@
+# test
 name: auto-build-on-push
 run-name: ${{ github.actor }} push a commit
 on: [push]
