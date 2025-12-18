@@ -1,10 +1,14 @@
+// Systéme Navigation
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
+// Afficher/Masquer password
 import { Eye, EyeOff } from "lucide-react";
 
 export default function RegisterForm() {
+    // Navigation
     const navigate = useNavigate();
 
+    // Info du formulaire
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -12,11 +16,14 @@ export default function RegisterForm() {
         confirmPassword: ""
     });
 
+    // Afficher/Masquer password
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    // Afficher les erreurs
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    // Execute lors du fonctionnement du formualaire
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
@@ -29,6 +36,7 @@ export default function RegisterForm() {
         setLoading(true);
 
         try {
+            // Envoi des données à l’API
             const res = await fetch("http://127.0.0.1:8000/register", {
                 method: "POST",
                 headers: {
@@ -39,8 +47,10 @@ export default function RegisterForm() {
                 ),
             });
 
+            // Reponse Json
             const data = await res.json();
 
+            // Si erreur
             if (!res.ok) {
                 setError(data.detail || "Erreur lors de l'inscription");
             } else {
@@ -48,6 +58,7 @@ export default function RegisterForm() {
                navigate("/");
             }
         } catch (error) {
+            // Erreur Réseau
             setError("Impossible de contacter le serveur", error);
         } finally {
             setLoading(false);

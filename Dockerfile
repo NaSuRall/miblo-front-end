@@ -1,16 +1,30 @@
-# Utilisation de nodejs version 22
-FROM node:22-alpine
-# Emplacement projet dans la Vm
+# --------------------
+# ÉTAPE 1 : BUILD
+# --------------------
+FROM node:20-alpine AS build
+
 WORKDIR /app
-# Utilisation unique du pacage.json pour recuper uniquement
-# ce que l'on a besoin pour le npm install
+
+# Copier les dépendances
 COPY package*.json ./
-# Utilisation de la commande NPM INSTALL
 RUN npm install
-# Copier le reste de tout le projet
+
+# Copier le code
 COPY . .
-#Configuration du port
-EXPOSE 5173
-# Permettre d'acceder au site / sinon il tourne sur le localhost du container uniquement
-# avec host et 0.0.0.0 on peux y acceder depuis le pc qui fait tourner le container
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+# Build du front
+RUN npm run build
+
+# --------------------
+# ÉTAPE 2 : NGINX
+# --------------------
+FROM nginx:alpine
+
+# Copier le build dans nginx
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Port exposé
+EXPOSE 80
+
+# Lancer nginx
+CMD ["nginx", "-g", "daemon off;"]
