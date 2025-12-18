@@ -16,11 +16,12 @@ jobs:
 
       - name: Send email when fail
         #send email when the build fail 4
-        if: success()
+        if: failure()
         uses: dawidd6/action-send-mail@f16ced8d0ec73c3cc718a0b84684899505ce469a
         with:
           server_address: smtp.gmail.com
           server_port: 587
+          secure: false
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: erreur sur le repo ${{ github.repository }}
