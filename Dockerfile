@@ -9,15 +9,13 @@ COPY package*.json ./
 
 RUN chown -R node:node /app
 
-RUN chmod -R a-w /app
-
 # Création et utilisation d’un utilisateur non-root
 USER node
 # Utilisation de la commande NPM INSTALL
 RUN npm install
 # Copier le reste de tout le projet
 # Copier le reste du projet
-COPY --chown=node:node . .
+COPY --chown=node:node --chmod=755 . .
 #Configuration du port
 EXPOSE 5173
 # Permettre d'acceder au site / sinon il tourne sur le localhost du container uniquement
