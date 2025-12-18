@@ -27,10 +27,11 @@ function AddAccountButton({accounts}) {
             alert("Vous avez atteint le maximum de comptes bancaires.");
             return;
           }
-            window.confirm("Es-tu sûr de vouloir créer un nouveau compte ?");
+            globalThis.confirm("Es-tu sûr de vouloir créer un nouveau compte ?");
             await addBankAccount(userId);   // remplacez 1 par l'ID utilisateur connecter
-            window.location.reload();
-          } catch (e) {
+            globalThis.location.reload();
+
+        } catch (e) {
             console.error("Erreur :", e);
           }
     }}>

@@ -57,9 +57,10 @@ export default function BankAccountItem({ account, index }) {
                     className="p-2 cursor-pointer border-t-1 rounded-lg"
                     style={{ color: "var(--text-color)", backgroundColor: "var(--color-bg-red-bytton)", borderColor: "var(--color-border-red-button)" }}
                     onClick={() => {
-                      if (window.confirm("Es-tu sûr de vouloir clôturer ce compte ?")) {
+                      if (globalThis.confirm("Es-tu sûr de vouloir clôturer ce compte ?")) {
                         closeBankAccount(account.id);
-                        window.location.reload();
+                          globalThis.location.reload();
+
                       }
                     }}>Cloturer le compte</li>
                 </ul>

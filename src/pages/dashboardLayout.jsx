@@ -15,8 +15,8 @@ export default function DashboardLayout() {
     const handleLogout = () => {
     
     localStorage.removeItem("token"); // supprime le JWT
-    window.location.reload();
-  };
+     globalThis.location.reload();
+    };
 
   return (
     <div className="flex h-screen p-3 gap-5" style={{backgroundColor: "var(--background-color)"}}>
@@ -26,12 +26,12 @@ export default function DashboardLayout() {
         </div>
         <nav className="flex flex-col h-full justify-between gap-4 text-sm font-medium ">
           <div className='flex flex-col gap-2'>
-            {navItems.map((item, index) => {
+            {navItems.map((item) => {
               const Icon = item.icon;
               return (
                 <NavLink
                   to={item.path}
-                  key={index}
+                  key={item.id}
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-3 py-2 rounded-xl transition ${
                       isActive ? "bg-purple-400/50 text-white" : "hover:bg-purple-400/30 text-gray-300"
