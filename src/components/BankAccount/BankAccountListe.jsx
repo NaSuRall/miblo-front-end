@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-import { getBankAccounts } from "../../services/api/bankAccountService"; // ici l'appelle de l'api la methode que l'on souhaite
-import BankAccountItem from "./BankAccountItem"; 
-import { Facebook } from "lucide-react";
+import BankAccountItem from "./BankAccountItem";
+import PropTypes from "prop-types";
 
 export default function BankAccountList({accounts}) {
 
@@ -12,14 +10,14 @@ export default function BankAccountList({accounts}) {
       </div>
       {accounts
       .filter((item) => item.is_primary === true)
-      .map((item) => (
-        <BankAccountItem key={item.id} account={item} />
+      .map((item, index) => (
+        <BankAccountItem key={item.id} account={item} index={index} />
       ))}
       <div className="flex  mb-5 mt-10">
         <span className="text-xl" style={{color: "var(--text-color)"}}>Autres Comptes</span>
       </div>
       {accounts
-      .filter((item, index) => item.is_primary === false)
+      .filter((item) => item.is_primary === false)
       .filter((item) => item.is_closed === false)
       .slice(0, 5)
       .map((item, index) => (
@@ -27,4 +25,10 @@ export default function BankAccountList({accounts}) {
       ))}
     </div>
   );
+}
+
+BankAccountList.propTypes = {
+    accounts: PropTypes.array.isRequired,
+    index: PropTypes.number.isRequired,
+
 }
