@@ -23,4 +23,5 @@ TransactionsList.propTypes = {
         })
     ),
     destinataireAccountRib: PropTypes.string,
+    origineAccountRib: PropTypes.string,
 }

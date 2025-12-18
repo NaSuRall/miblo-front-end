@@ -57,24 +57,30 @@ export default function RecipientForm({ userId, onRecipientAdded }) {
             <h2 className="text-xl font-bold mb-2">Ajouter un bénéficiaire</h2>
 
             <div className="flex flex-col gap-1">
-                <label>RIB du bénéficiaire</label>
-                <input
-                    type="text"
-                    value={rib}
-                    onChange={(e) => setRib(e.target.value)}
-                    className="p-2 border rounded-lg outline-none focus:outline-none"
-                />
+                <label>
+                    RIB du bénéficiaire {" "}
+                    <input
+                        type="text"
+                        value={rib}
+                        onChange={(e) => setRib(e.target.value)}
+                        className="p-2 border rounded-lg outline-none focus:outline-none"
+                    />
+                </label>
+
             </div>
 
             <div className="flex flex-col gap-1">
-                <label>Nom du bénéficiaire</label>
-                <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Nom du bénéficiaire"
-                    className="p-2 border rounded-lg outline-none focus:outline-none"
-                />
+                <label>
+                    Nom du bénéficiaire {" "}
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Nom du bénéficiaire"
+                        className="p-2 border rounded-lg outline-none focus:outline-none"
+                    />
+                </label>
+
             </div>
 
             <button type="submit" className="p-2 rounded-lg" style={{backgroundColor: "var(--color-bg-button-green)", color: "var(--color-text-green)", borderColor: "var(--color-border-green)"}}>Ajouter</button>

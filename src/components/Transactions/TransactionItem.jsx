@@ -20,6 +20,7 @@ TransactionItem.propTypes = {
         id: PropTypes.string.isRequired,
         created_at: PropTypes.string.isRequired,
         amout: PropTypes.string.isRequired,
+        id_compteB: PropTypes.string.isRequired,
 
     }),
     origineAccountRib: PropTypes.string,
@@ -28,6 +29,7 @@ TransactionItem.propTypes = {
         created_at: PropTypes.string.isRequired,
         amout: PropTypes.string.isRequired,
         rib: PropTypes.string,
+        find: PropTypes.func.isRequired
     }),
 
 }
