@@ -8,7 +8,9 @@ COPY package*.json ./
 # Utilisation de la commande NPM INSTALL
 RUN npm install
 # Copier le reste de tout le projet
-COPY . .
+COPY src ./src
+COPY public ./public
+COPY vite.config.js ./
 #Configuration du port
 EXPOSE 5173
 # Permettre d'acceder au site / sinon il tourne sur le localhost du container uniquement
