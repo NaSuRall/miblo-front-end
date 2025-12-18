@@ -10,7 +10,10 @@ COPY package*.json ./
 RUN npm install
 # Copier le reste de tout le projet
 # Copier le reste du projet
-COPY --chown=root:root --chmod=755 . .
+COPY --chown=root:root --chmod=755 src ./src
+COPY --chown=root:root --chmod=755 public ./public
+COPY --chown=root:root --chmod=755 index.html ./
+
 # Donner les permission pour le user dans le dossier /app
 RUN chown -R node:node /app
 # Création et utilisation d’un utilisateur non-root
