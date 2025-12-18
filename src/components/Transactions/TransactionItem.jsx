@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function TransactionItem({ transaction, origineAccountRib, destinataireAccountRib }) {
     console.log("destinataireAccountRib", destinataireAccountRib);
     const ribDestinataire = destinataireAccountRib?.find(d => d.id === transaction.id_compteB)?.rib;
@@ -11,4 +13,21 @@ export default function TransactionItem({ transaction, origineAccountRib, destin
             <p>Compte destinataire : {ribDestinataire}</p>
         </div>
     )
+}
+
+TransactionItem.propTypes = {
+    transaction: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        created_at: PropTypes.string.isRequired,
+        amout: PropTypes.string.isRequired,
+
+    }),
+    origineAccountRib: PropTypes.string,
+    destinataireAccountRib: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        created_at: PropTypes.string.isRequired,
+        amout: PropTypes.string.isRequired,
+        rib: PropTypes.string,
+    }),
+
 }

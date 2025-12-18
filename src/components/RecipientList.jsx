@@ -1,4 +1,5 @@
 import RecipientItem from "./RecipientItem.jsx";
+import PropTypes from "prop-types";
 
 export default function RecipientList({ recipientList }) {
     if (!Array.isArray(recipientList) || recipientList.length === 0) {
@@ -12,4 +13,8 @@ export default function RecipientList({ recipientList }) {
             ))}
         </div>
     );
+}
+RecipientList.propTypes = {
+    recipientList: PropTypes.array,
+
 }
