@@ -123,7 +123,7 @@ export default function DashboardComponent() {
             <p className="text-gray-500">Aucune transaction trouvée.</p>
           ) : (
             transactions.map((t) => {
-                t.id_compteB === userId;
+                t.id_compteB = userId;
               return (
                 <div
                   key={transactions.id}
