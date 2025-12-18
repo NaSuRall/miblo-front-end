@@ -67,16 +67,20 @@ export default function RegisterForm() {
                 <form onSubmit={handleSubmit} className="space-y-4">
 
                     <div className="flex flex-col">
-                        <label className="mb-1 font-semibold text-xl">Nom d'utilisateur</label>
-                        <input
-                            type="text"
-                            placeholder="Nom"
-                            name="name"
-                            value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="flex-1 px-4 py-2 rounded-lg text-black focus:outline-none bg-white"
-                            required
-                        />
+                        <label className="mb-1 font-semibold text-xl">
+                            Nom d'utilisateur {" "}
+                            <input
+                                type="text"
+                                placeholder="Nom"
+                                name="name"
+                                value={formData.name}
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                className="flex-1 px-4 py-2 rounded-lg text-black focus:outline-none bg-white"
+                                required
+                            />
+
+                        </label>
+
                     </div>
 
                     <div className="flex flex-col">

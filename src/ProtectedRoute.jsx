@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Navigate } from "react-router-dom";
 
-export default function ProtectedRoute({ children }) {
+export function ProtectedRoute({ children }) {
     const token = localStorage.getItem("token");
 
     if (!token) {

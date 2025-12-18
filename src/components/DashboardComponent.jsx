@@ -3,6 +3,7 @@ import getTransactionsAccount from "../services/api/dashboardService";
 import { getBankAccounts } from "../services/api/bankAccountService";
 import { Users , Landmark} from "lucide-react";
 import  getIdFromToken  from '../services/getIdFromToken';
+
 export default function DashboardComponent() {
   const [transactions, setTransactions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

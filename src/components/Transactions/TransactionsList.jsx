@@ -1,7 +1,7 @@
 import TransactionItem from "./TransactionItem";
 import PropTypes from "prop-types";
 
-export default function TransactionsList({transactions, origineAccountRib, destinataireAccountRib}) {
+export function TransactionsList({transactions, origineAccountRib, destinataireAccountRib}) {
     return (
         <div>
             <div>
@@ -22,6 +22,5 @@ TransactionsList.propTypes = {
             })
         })
     ),
-    originAccountRib: PropTypes.string,
     destinataireAccountRib: PropTypes.string,
 }

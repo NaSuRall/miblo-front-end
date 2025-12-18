@@ -4,7 +4,7 @@ import showRecipients from "../services/api/RecipientService.js";
 import RecipientList from "../components/RecipientList.jsx";
 import getIdFromToken from "../services/getIdFromToken.js";
 
-export default function RecipientShow(){
+export function RecipientShow(){
     const[recipientList, setRecipientList] = useState([]);
 
     useEffect(() => {

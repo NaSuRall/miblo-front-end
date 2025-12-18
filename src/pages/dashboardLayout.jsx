@@ -1,10 +1,7 @@
-
 import '../index.css';
 import React from 'react';
 import { Outlet, NavLink } from "react-router-dom";
-import { Home, CreditCard, BarChart2, Settings, LogOut } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-
+import { Home, CreditCard, BarChart2, LogOut } from "lucide-react";
 
 export default function DashboardLayout() {
   const navItems = [
@@ -25,7 +22,7 @@ export default function DashboardLayout() {
     <div className="flex h-screen p-3 gap-5" style={{backgroundColor: "var(--background-color)"}}>
       <aside className="w-64 text-gray-200 flex rounded-xl flex-col p-6 gap-6 shadow-xl" style={{backgroundColor: "var(--background-card-navbar)"}}>
         <div className="flex items-center justify-center w-full" style={{color: "var(--text-color)"}}>
-          <img src="../src/assets/img/logo.png" className='flex w-[50%] h-full  ' />
+          <img src="../src/assets/img/logo.png" className='flex w-[50%] h-full  ' alt={'logo'} />
         </div>
         <nav className="flex flex-col h-full justify-between gap-4 text-sm font-medium ">
           <div className='flex flex-col gap-2'>
