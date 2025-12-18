@@ -1,6 +1,5 @@
-import { EllipsisVertical } from "lucide-react";
 import { useState } from "react";
-import { Users, Landmark, Eye, EyeOff } from "lucide-react";
+import { Users, Landmark, Eye, EyeOff, EllipsisVertical } from "lucide-react";
 import PropTypes from "prop-types";
 import Button from "../Form/Button";
 import {closeBankAccount} from "../../services/api/bankAccountService";

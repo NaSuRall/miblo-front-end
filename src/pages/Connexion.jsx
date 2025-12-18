@@ -38,7 +38,7 @@ export default function Connexion() {
             console.log(token);
             navigate("/");
         } catch (err) {
-            if (err.response && err.response.status === 401) {
+            if (err?.response && err.response.status === 401) {
                 setError("Identifiants incorrects");
             } else {
                 setError("Erreur serveur");

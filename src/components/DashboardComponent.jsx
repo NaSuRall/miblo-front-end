@@ -122,11 +122,11 @@ export default function DashboardComponent() {
           {transactions.length === 0 ? (
             <p className="text-gray-500">Aucune transaction trouvée.</p>
           ) : (
-            transactions.map((t, i) => {
-              const isCredit = t.id_compteB === userId;
+            transactions.map((t) => {
+                t.id_compteB === userId;
               return (
                 <div
-                  key={i}
+                  key={transactions.id}
                   className={`p-4 bg-white text-sm shadow rounded flex flex-col md:flex-row md:justify-between md:items-center `}
                 >
                   <p><strong>Date :</strong> {new Date(t.created_at).toLocaleString()}</p>

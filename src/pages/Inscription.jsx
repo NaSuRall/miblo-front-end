@@ -41,7 +41,7 @@ export default function RegisterForm() {
 
             const data = await res.json();
 
-            if (!res.ok) {
+            if (res.ok) {
                 setError(data.detail || "Erreur lors de l'inscription");
             } else {
                 alert("Compte créé avec succès !");

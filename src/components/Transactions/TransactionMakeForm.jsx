@@ -47,7 +47,6 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     useEffect(() => {
         async function fetchAccountB() {
             if (rib.trim() === "") return;
-                console.log(rib);
             try {
                 const account = await getAccountByRib(rib);
                 setFormData((prev) => ({
@@ -71,7 +70,7 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     };
 
     const handleRibChange = (e) => {
-        console.log(e);
+
         setRib(e.target.value);
     };
 
@@ -100,7 +99,6 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
         }
 
         try {
-            console.log(formData);
             const data = await transactionService(formData);
         
             toast.success(data.message);
