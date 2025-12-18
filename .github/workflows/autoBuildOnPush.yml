@@ -16,8 +16,8 @@ jobs:
 
       - name: Send email when fail
         #send email when the build fail 4
-        if: failure()
-        uses: dawidd6/action-send-mail@v3
+        if: success()
+        uses: dawidd6/action-send-mail@<COMMIT_SHA>
         with:
           server_address: smtp.gmail.com
           server_port: 587
