@@ -1,6 +1,7 @@
 import { EllipsisVertical } from "lucide-react";
-import { useState, useEffect } from "react";
-import { Users, Landmark, Eye, EyeOff, CircleSmall } from "lucide-react";
+import { useState } from "react";
+import { Users, Landmark, Eye, EyeOff } from "lucide-react";
+import PropTypes from "prop-types";
 import Button from "../Form/Button";
 import {closeBankAccount} from "../../services/api/bankAccountService";
 import { jwtDecode } from "jwt-decode";
@@ -64,4 +65,9 @@ export default function BankAccountItem({ account, index }) {
     </div>
 
   );
+}
+
+BankAccountItem.propTypes = {
+    account: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired,
 }
