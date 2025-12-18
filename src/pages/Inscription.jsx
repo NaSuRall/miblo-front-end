@@ -58,7 +58,7 @@ export default function RegisterForm() {
         <div className="h-screen flex items-center w-full justify-center bg-gradient-to-b from-[#DDECF9] to-[#F8FBF1] p-4">
             <div className="w-full max-w-md bg-[#7B9DD2] p-8 rounded-xl shadow-xl text-white">
                 <div className="flex flex-row w-full items-center justify-center">
-                    <img src="../src/assets/img/logo.png" className='flex w-[30%] h-full  ' />
+                    <img src="../src/assets/img/logo.png" className='flex w-[30%] h-full  ' alt={'logo'} />
                 </div>
                 <h2 className="text-2xl font-bold text-center mb-6">Inscription</h2>
 
@@ -80,60 +80,70 @@ export default function RegisterForm() {
                     </div>
 
                     <div className="flex flex-col">
-                        <label className="mb-1 font-semibold text-xl">Email</label>
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            name="email"
-                            value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="flex-1 px-4 py-2 rounded-lg text-black focus:outline-none bg-white"
-                            required
-                        />
+                        <label className=" flex flex-col mb-1 font-semibold text-xl">
+                            Email {" "}
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                name="email"
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                className="flex-1 px-4 py-2 rounded-lg text-black focus:outline-none bg-white"
+                                required
+                            />
+                        </label>
+
                     </div>
 
                     <div className="flex flex-col">
-                        <label className="mb-1 font-semibold text-xl">Mot de Passe</label>
-                        <div className="flex items-center">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                placeholder="Mot de passe"
-                                name="password"
-                                value={formData.password}
-                                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                className="flex-1 px-4 py-2 rounded-l-lg text-black bg-white focus:outline-none"
-                                required
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword((v) => !v)}
-                                className="px-3 py-2 bg-[#992BB5] rounded-r-lg hover:opacity-90 transition font-semibold"
-                            >
-                                {showPassword ? <Eye /> : <EyeOff />}
-                            </button>
-                        </div>
+                        <label className="mb-1 font-semibold text-xl">
+                            Mot de Passe {" "}
+                            <div className="flex items-center">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Mot de passe"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                                    className="flex-1 px-4 py-2 rounded-l-lg text-black bg-white focus:outline-none"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword((v) => !v)}
+                                    className="px-3 py-2 bg-[#992BB5] rounded-r-lg hover:opacity-90 transition font-semibold"
+                                >
+                                    {showPassword ? <Eye /> : <EyeOff />}
+                                </button>
+                            </div>
+                        </label>
+
                     </div>
 
                     <div className="flex flex-col">
-                        <label className="mb-1 font-semibold text-xl">Confirmer le Mot de Passe</label>
-                        <div className="flex items-center">
-                            <input
-                                type={showConfirmPassword ? "text" : "password"}
-                                placeholder="Confirmez le mot de passe"
-                                name="confirmPassword"
-                                value={formData.confirmPassword}
-                                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                                className="flex-1 px-4 py-2 rounded-l-lg text-black bg-white focus:outline-none"
-                                required
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowConfirmPassword((v) => !v)}
-                                className="px-3 py-2 bg-[#992BB5] rounded-r-lg hover:opacity-90 transition font-semibold"
-                            >
-                                {showConfirmPassword ? <Eye /> : <EyeOff />}
-                            </button>
-                        </div>
+                        <label className="mb-1 font-semibold text-xl">
+                            Confirmer le Mot de Passe
+
+                            <div className="flex items-center">
+                                <input
+                                    type={showConfirmPassword ? "text" : "password"}
+                                    placeholder="Confirmez le mot de passe"
+                                    name="confirmPassword"
+                                    value={formData.confirmPassword}
+                                    onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                                    className="flex-1 px-4 py-2 rounded-l-lg text-black bg-white focus:outline-none"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowConfirmPassword((v) => !v)}
+                                    className="px-3 py-2 bg-[#992BB5] rounded-r-lg hover:opacity-90 transition font-semibold"
+                                >
+                                    {showConfirmPassword ? <Eye /> : <EyeOff />}
+                                </button>
+                            </div>
+                        </label>
+
                     </div>
 
                     <button

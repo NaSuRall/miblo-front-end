@@ -1,4 +1,5 @@
 import TransactionItem from "./TransactionItem";
+import PropTypes from "prop-types";
 
 export default function TransactionsList({transactions, origineAccountRib, destinataireAccountRib}) {
     return (
@@ -10,4 +11,17 @@ export default function TransactionsList({transactions, origineAccountRib, desti
             </div>
         </div>
     )
+}
+
+TransactionsList.propTypes = {
+    transactions: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            transaction: PropTypes.shape({
+                id: PropTypes.number,
+            })
+        })
+    ),
+    originAccountRib: PropTypes.string,
+    destinataireAccountRib: PropTypes.string,
 }
