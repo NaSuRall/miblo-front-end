@@ -42,8 +42,17 @@ export default function BankAccountItem({ account, index }) {
               <div className="absolute top-0 -right-85 bg-white border rounded-lg shadow-lg z-10">
                 <ul className="flex flex-col p-4 relative">
                   <button className="flex justify-end absolute right-4 top-2 cursor-pointer text-red-500" onClick={() => setIsOpen(false)}>X</button>
-                  <li style={{ color: "var(--color-gray)" }} className="p-2 cursor-pointer" onClick={() => setIsOpen(false)}>Voir les transactions</li>
-                  <li style={{ color: "var(--color-gray)" }} className="p-2 cursor-pointer" onClick={() => setIsOpen(false)}>Faire une Transaction</li>
+                    <li style={{ color: "var(--color-gray)" }} className="p-2">
+                        <button className="w-full text-left" onClick={() => setIsOpen(false)}>
+                            Voir les transactions
+                        </button>
+                    </li>
+
+                    <li style={{ color: "var(--color-gray)" }} className="p-2">
+                        <button className="w-full text-left" onClick={() => setIsOpen(false)}>
+                            Faire une Transaction
+                        </button>
+                    </li>
                   <li
 
                     className="p-2 cursor-pointer border-t-1 rounded-lg"
@@ -68,6 +77,11 @@ export default function BankAccountItem({ account, index }) {
 }
 
 BankAccountItem.propTypes = {
-    account: PropTypes.object.isRequired,
+    account: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        rib: PropTypes.string.isRequired,
+        solde: PropTypes.number.isRequired,
+        is_primary: PropTypes.bool.isRequired,
+    }).isRequired,
     index: PropTypes.number.isRequired,
 }
