@@ -16,7 +16,7 @@ jobs:
 
       - name: Send email when fail
         #send email when the build fail 4
-        if: failure()
+        if: success()
         uses: dawidd6/action-send-mail@f16ced8d0ec73c3cc718a0b84684899505ce469a
         with:
           server_address: smtp.gmail.com
