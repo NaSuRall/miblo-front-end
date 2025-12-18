@@ -1,6 +1,6 @@
 import React from 'react'
 import { addBankAccount } from "../../services/api/bankAccountService";
-import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { Plus } from "lucide-react";
 import  getIdFromToken  from '../../services/getIdFromToken';
 
@@ -28,7 +28,7 @@ function AddAccountButton({accounts}) {
             return;
           }
             window.confirm("Es-tu sûr de vouloir créer un nouveau compte ?");
-            const data = await addBankAccount(userId);   // remplacez 1 par l'ID utilisateur connecter
+            await addBankAccount(userId);   // remplacez 1 par l'ID utilisateur connecter
             window.location.reload();
           } catch (e) {
             console.error("Erreur :", e);
@@ -40,5 +40,14 @@ function AddAccountButton({accounts}) {
     </button>
   )
 }
+
+AddAccountButton.propTypes = {
+    accounts: PropTypes.arrayOf(
+        PropTypes.shape({
+            is_closed: PropTypes.bool.isRequired,
+        })
+    ).isRequired,
+};
+
 
 export default AddAccountButton
