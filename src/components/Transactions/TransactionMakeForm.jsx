@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import getIdFromToken from "../../services/getIdFromToken.js";
 import {MoveRight, Send} from "lucide-react";
+import PropTypes from "prop-types";
 
 function TransactionMakeForm({onAccountChange , origineAccountRib}) {
     const [bankAccounts, setBankAccounts] = useState([]);
@@ -79,7 +80,7 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
 
         const amountNumber = Number(formData.amout);
 
-        if (formData.amout.trim() === "" || isNaN(amountNumber)) {
+        if (formData.amout.trim() === "" || Number.isNaN(amountNumber)) {
             toast.error("Veuillez entrer un montant valide.")
             return;
         }
@@ -182,6 +183,12 @@ function TransactionMakeForm({onAccountChange , origineAccountRib}) {
             />
         </form>
     );
+}
+
+TransactionMakeForm.propTypes = {
+    onAccountChange: PropTypes.func.isRequired,
+    origineAccountRib: PropTypes.func.isRequired,
+
 }
 
 export default TransactionMakeForm;
