@@ -58,7 +58,7 @@ export default function Connexion() {
                 <form onSubmit={handleLogin} className="space-y-4">
                     <div className="flex flex-col">
                         <label className="flex flex-col mb-1 font-semibold text-xl">
-                            Email
+                            Email {''}
                             <input
                                 type="email"
                                 placeholder="Email"
@@ -74,7 +74,7 @@ export default function Connexion() {
 
                     <div className="flex flex-col">
                         <label className="mb-1 font-semibold text-xl">
-                            Mot de Passe
+                            Mot de Passe {' '}
                             <div className="flex items-center">
                                 <input
                                     type={showPassword ? "text" : "password"}

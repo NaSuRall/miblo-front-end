@@ -29,6 +29,4 @@ export default function BankAccountList({accounts}) {
 
 BankAccountList.propTypes = {
     accounts: PropTypes.array.isRequired,
-    index: PropTypes.number.isRequired,
-
 }
