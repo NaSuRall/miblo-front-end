@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import App from "./App.jsx";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom/client";
 import Dashboard from "./components/DashboardComponent.jsx";
 import BankAccount from "./pages/CompteBancaires.jsx"
@@ -8,7 +8,6 @@ import DashboardLayout from "./pages/dashboardLayout.jsx";
 import Transaction from "./pages/Transaction.jsx";
 import Connexion from "./pages/Connexion.jsx";
 import Inscription from "./pages/Inscription.jsx";
-import RecipientList from "./components/RecipientList.jsx";
 import Recipient from "./pages/Recipient.jsx";
 
 export default function PrivateRoute({ children }) {
@@ -18,6 +17,11 @@ export default function PrivateRoute({ children }) {
   }
   return children;
 }
+
+PrivateRoute.propTypes = {
+    children: PropTypes.node.isRequired,
+};
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
