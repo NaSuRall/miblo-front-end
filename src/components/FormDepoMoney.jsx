@@ -35,7 +35,7 @@ function FormDepoMoney() {
         e.preventDefault();
         const amountNumber = Number(formData.amout);
 
-        if (formData.amout.trim() === "" || isNaN(amountNumber)) {
+        if (formData.amout.trim() === "" || Number.isNaN(amountNumber)) {
             console.log("test amout", formData.amout);
             toast.error("Veuillez entrer un nombre valide.");
             return;

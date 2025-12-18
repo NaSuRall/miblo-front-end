@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../index.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PropTypes from "prop-types";
 
 export default function RecipientForm({ userId, onRecipientAdded }) {
     const [rib, setRib] = useState("");
@@ -89,4 +90,9 @@ export default function RecipientForm({ userId, onRecipientAdded }) {
             />
         </form>
     );
+}
+
+RecipientForm.propTypes = {
+    userId: PropTypes.string,
+    onRecipientAdded: PropTypes.func,
 }
