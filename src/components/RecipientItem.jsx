@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function RecipientItem({ recipient }) {
     const formattedDate = recipient.date
         ? new Date(recipient.date).toLocaleDateString("fr-FR")
@@ -10,4 +12,13 @@ export default function RecipientItem({ recipient }) {
             <p><b>Date d'ajout :</b> {formattedDate}</p>
         </div>
     );
+}
+
+RecipientItem.propTypes = {
+    recipient: PropTypes.shape({
+        name: PropTypes.string,
+        date: PropTypes.string,
+        rib: PropTypes.string,
+
+    })
 }
