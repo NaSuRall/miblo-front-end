@@ -8,6 +8,9 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN chown -R node:node /app
+
+RUN chmod -R a-w /app
+
 # Création et utilisation d’un utilisateur non-root
 USER node
 # Utilisation de la commande NPM INSTALL
