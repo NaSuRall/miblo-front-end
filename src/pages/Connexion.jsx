@@ -50,45 +50,50 @@ export default function Connexion() {
         <div className="h-screen flex items-center w-full justify-center bg-gradient-to-b from-[#DDECF9] to-[#F8FBF1] p-4">
             <div className="w-full max-w-md bg-[#7B9DD2] p-8 rounded-xl shadow-xl text-white">
                 <div className="flex flex-row w-full items-center justify-center">
-                    <img src="../src/assets/img/logo.png" className='flex w-[30%] h-full  ' />
+                    <img src="../src/assets/img/logo.png" className='flex w-[30%] h-full  ' alt={"Logo"} />
                 </div>
 
                 <h2 className="text-2xl font-bold text-center mb-6">Connexion</h2>
 
                 <form onSubmit={handleLogin} className="space-y-4">
                     <div className="flex flex-col">
-                        <label className="mb-1 font-semibold text-xl">Email</label>
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            required
-                            autoComplete="email"
-                            className="px-4 py-2 rounded-lg text-black focus:outline-none bg-white"
-                        />
+                        <label className="flex flex-col mb-1 font-semibold text-xl">
+                            Email
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                required
+                                autoComplete="email"
+                                className="px-4 py-2 rounded-lg text-black focus:outline-none bg-white"
+                            />
+                        </label>
+
                     </div>
 
                     <div className="flex flex-col">
-                        <label className="mb-1 font-semibold text-xl">Mot de Passe</label>
-                        <div className="flex items-center">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                placeholder="Mot de passe"
-                                value={formData.password}
-                                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                required
-                                autoComplete="current-password"
-                                className="flex-1 px-4 py-2 rounded-l-lg text-black focus:outline-none bg-white"
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword((s) => !s)}
-                                className="px-3 py-2 bg-[#992BB5] rounded-r-lg hover:opacity-90 transition font-semibold"
-                            >
-                                {showPassword ? <Eye /> : <EyeOff />}
-                            </button>
-                        </div>
+                        <label className="mb-1 font-semibold text-xl">
+                            Mot de Passe
+                            <div className="flex items-center">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Mot de passe"
+                                    value={formData.password}
+                                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                                    required
+                                    autoComplete="current-password"
+                                    className="flex-1 px-4 py-2 rounded-l-lg text-black focus:outline-none bg-white"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword((s) => !s)}
+                                    className="px-3 py-2 bg-[#992BB5] rounded-r-lg hover:opacity-90 transition font-semibold"
+                                >
+                                    {showPassword ? <Eye /> : <EyeOff />}
+                                </button>
+                            </div>
+                        </label>
                     </div>
 
                     {error && <p className="text-sm text-red-200 text-center">{error}</p>}
