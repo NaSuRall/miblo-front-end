@@ -4,9 +4,12 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: front-end
+    #redirige le port 5173 de la machine hote vers le conteneur
     ports:
       - "5173:5173"
+    #monte le code source local dans /app du conteneur
     volumes:
       - .:/app
       - /app/node_modules
+    #lance le serveur
     command: npm run dev -- --host 0.0.0.0
